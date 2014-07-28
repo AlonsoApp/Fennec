@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Fennec.iml" filepath="$PROJECT_DIR$/Fennec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Fennec Lib/Fennec Lib.iml" filepath="$PROJECT_DIR$/Fennec Lib/Fennec Lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/Node Library/Node Library.iml" filepath="$PROJECT_DIR$/Node Library/Node Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/Node Services/Node Services.iml" filepath="$PROJECT_DIR$/Node Services/Node Services.iml" />
       <module fileurl="file://$PROJECT_DIR$/Supernode Proxy/Supernode Proxy.iml" filepath="$PROJECT_DIR$/Supernode Proxy/Supernode Proxy.iml" />

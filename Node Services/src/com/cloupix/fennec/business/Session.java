@@ -1,5 +1,6 @@
 package com.cloupix.fennec.business;
 
+import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksServices;
 import com.cloupix.fennec.logic.network.PassiveRequestManager;
 
 import java.io.IOException;
@@ -9,14 +10,14 @@ import java.net.Socket;
  * Created by AlonsoUSA on 30/06/14.
  *
  */
-public class Session implements Runnable{
+public class Session implements Runnable, ProtocolV1CallbacksServices{
 
     private Socket sourceSocket;
     private PassiveRequestManager passiveRequestManager = null;
 
     public Session(Socket sourceSocket) throws IOException {
         this.sourceSocket = sourceSocket;
-        this.passiveRequestManager = new PassiveRequestManager(sourceSocket);
+        this.passiveRequestManager = new PassiveRequestManager(sourceSocket, this);
     }
 
     @Override

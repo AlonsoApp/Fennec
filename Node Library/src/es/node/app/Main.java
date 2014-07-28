@@ -1,6 +1,7 @@
 package es.node.app;
 
 import com.cloupix.fennec.business.Session;
+import com.cloupix.fennec.util.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +17,10 @@ public class Main {
     private static final int DEVICE_DEMO_PORT = 1179;
 
     public static void main(String[] args){
+
+        loadConfig();
+
+
         System.out.print("Brah: ");
         String msg = leerCadena();
         long oTime = System.currentTimeMillis();
@@ -25,14 +30,20 @@ public class Main {
         String result = "Error";
         try {
             session.connect(DEVICE_DEMO_IP, DEVICE_DEMO_PORT);
-            result = session.transmit(msg);
+            System.out.println("Connected :)");
+            byte[] rawResult = session.transmit(msg.getBytes());
+            System.out.println("Transmited :D");
+            result = new String(rawResult, "utf-8");
             session.disconnect();
-            iTime = System.currentTimeMillis();
-        } catch (IOException e) {
+            System.out.println("Disconnected 8D");
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        System.out.println(result + " " + (iTime - oTime));
+        iTime = System.currentTimeMillis();
+
+        System.out.println("Respuesta: " + result);
+        System.out.println("Tiempo: " + (iTime - oTime) + "ms");
     }
 
     public static String leerCadena()
@@ -57,6 +68,10 @@ public class Main {
         }
         while (b);
         return cad;
+    }
+
+    private static void loadConfig(){
+        R.build(R.TYPE_LIBRARY);
     }
 
 }

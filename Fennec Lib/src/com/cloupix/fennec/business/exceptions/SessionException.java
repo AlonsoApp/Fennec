@@ -6,6 +6,9 @@ package com.cloupix.fennec.business.exceptions;
  */
 public class SessionException extends Exception{
 
+    public static final String CONNECTION_EXCEPTION = "Connection exception";
+    public static final String HELLO_EXCEPTION = "Protocol version negotiation exception";
+
     public SessionException(){
 
     }

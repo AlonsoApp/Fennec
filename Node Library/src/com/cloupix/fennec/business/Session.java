@@ -1,6 +1,11 @@
 package com.cloupix.fennec.business;
 
+import com.cloupix.fennec.business.exceptions.CommunicationException;
+import com.cloupix.fennec.business.exceptions.ProtocolException;
+import com.cloupix.fennec.business.exceptions.SessionException;
+import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksLibrary;
 import com.cloupix.fennec.logic.network.ActiveRequestManager;
+import com.cloupix.fennec.util.R;
 
 import java.io.IOException;
 
@@ -8,25 +13,38 @@ import java.io.IOException;
  * Created by AlonsoUSA on 30/06/14.
  *
  */
-public class Session {
-
-    public enum ContentType{
-        TEXT_PLAIN, TEXT_JSON
-    }
+public class Session implements ProtocolV1CallbacksLibrary{
 
     private ActiveRequestManager activeRequestManager;
 
-    public void connect(String deviceIP, int devicePORT) throws IOException {
+    public void connect(String deviceIP, int devicePORT) throws IOException, SessionException {
         this.activeRequestManager = new ActiveRequestManager();
-        activeRequestManager.connect(deviceIP, devicePORT);
+        this.activeRequestManager.start(R.getInstance().getLocalHostIp(), R.getInstance().getPortExternal(), this);
+        try {
+            activeRequestManager.connect(deviceIP, devicePORT);
+        } catch (ProtocolException eP){
+            activeRequestManager.sendError(/** Pasarle un error para que lo procese y lo comunique a la otra parte */);
+        } catch (SessionException e) {
+            e.printStackTrace();
+        }
     }
 
-    public String transmit(String msg) throws IOException {
+    public byte[] transmit(byte[] content) throws IOException, CommunicationException, ProtocolException {
         // TODO Hacer comprobaciones de estado y cambiar el string por un byte[]
-        return activeRequestManager.transmit(msg);
+        return activeRequestManager.transmit(content);
     }
 
-    public void disconnect() throws IOException {
+    public void disconnect() throws IOException, ProtocolException {
         activeRequestManager.disconnect();
+    }
+
+    @Override
+    public Status onConnectionRequest(String sourceIp) {
+        return null;
+    }
+
+    @Override
+    public byte[] onTransmitRequest(byte[] content) {
+        return null;
     }
 }
