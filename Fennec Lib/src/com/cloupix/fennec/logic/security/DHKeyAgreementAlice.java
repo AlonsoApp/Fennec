@@ -102,7 +102,7 @@ public class DHKeyAgreementAlice {
 
     /**
      * Converts a byte to hex digit and writes to the supplied buffer
-     */
+     *
     private void byte2hex(byte b, StringBuffer buf) {
         char[] hexChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8',
                 '9', 'A', 'B', 'C', 'D', 'E', 'F' };
@@ -114,7 +114,7 @@ public class DHKeyAgreementAlice {
 
     /**
      * Converts a byte array to hex string
-     */
+     *
     private String toHexString(byte[] block) {
         StringBuffer buf = new StringBuffer();
 
@@ -128,6 +128,7 @@ public class DHKeyAgreementAlice {
         }
         return buf.toString();
     }
+    */
 
 
     // The 1024 bit Diffie-Hellman modulus values used by SKIP
@@ -204,6 +205,6 @@ public class DHKeyAgreementAlice {
     }
 
     public String getSharedSecretString(){
-        return toHexString(sharedSecret);
+        return SecurityManager.byteArray2Hex(sharedSecret);
     }
 }

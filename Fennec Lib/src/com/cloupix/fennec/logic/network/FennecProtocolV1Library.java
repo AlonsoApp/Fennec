@@ -48,7 +48,6 @@ public class FennecProtocolV1Library extends FennecProtocolV1 {
     @Override
     public void connect(String deviceIP, int devicePORT) throws IOException, SessionException {
         writeBytes(LineParser.encodeLine(new String[]{"CONNECT", deviceIP, devicePORT+""}, SP, CLRF));
-        //dos.writeBytes("CONNECT" + SP + deviceIP + SP + devicePORT + CLRF);
 
         /** Iniciamos espera respuesta del Node Services */
         String responseLine = br.readLine();

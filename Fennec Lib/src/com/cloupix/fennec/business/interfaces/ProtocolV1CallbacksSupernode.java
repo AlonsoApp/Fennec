@@ -14,6 +14,7 @@ public interface ProtocolV1CallbacksSupernode extends ProtocolV1Callbacks {
 
     PrivateKey getCertPrivateKey() throws NoSuchAlgorithmException;
 
-    boolean validateSha(String sha);
+    byte[] validateSha(String sha);
 
+    boolean registerDevice(byte[] authKey);
 }

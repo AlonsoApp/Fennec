@@ -1,34 +1,39 @@
 package com.cloupix.fennec.logic.security;
 
+import com.cloupix.fennec.business.CipheredContent;
+import com.cloupix.fennec.business.CipheredContentC;
+
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by AlonsoUSA on 21/07/14.
  *
  */
 public class SecurityManagerC extends SecurityManager {
 
+    private String authKeyHex;
 
     public SecurityManagerC(SecurityLevel securityLevel){
         this.securityLevel = securityLevel;
     }
 
     @Override
-    public byte[] cipher(String msg) {
-        return null;
+    public CipheredContent cipher(byte[] content) throws GeneralSecurityException, UnsupportedEncodingException {
+
+        return new CipheredContentC(AES.encrypt(byteArray2Hex(authKey), content));
     }
 
     @Override
-    public byte[] cipher(byte[] content) {
-        return content;
+    public byte[] decipher(CipheredContent cipheredContent) throws GeneralSecurityException, UnsupportedEncodingException {
+        return AES.decrypt(byteArray2Hex(authKey), cipheredContent.getFullContent());
     }
 
     @Override
-    public byte[] decipher(byte[] content) {
-        return content;
-    }
-
-    @Override
-    public String decipherToString(byte[] content) {
-        return null;
+    public void setAuthKey(byte[] authKey) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        super.setAuthKey(authKey);
+        this.authKeyHex = byteArray2Hex(authKey);
     }
 
     @Override

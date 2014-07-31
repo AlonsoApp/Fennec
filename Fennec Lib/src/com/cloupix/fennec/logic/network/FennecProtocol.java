@@ -15,6 +15,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by AlonsoUSA on 16/07/14.
@@ -89,17 +91,17 @@ public abstract class FennecProtocol {
 
     public abstract void verify() throws SessionException, IOException;
 
-    public abstract void authenticate() throws IOException, ProtocolException, AuthenticationException, CommunicationException;
+    public abstract void authenticate() throws Exception;
 
     public abstract void register() throws Exception;
 
-    public abstract void connect(String deviceIP, int devicePORT) throws IOException, SessionException;
+    public abstract void connect(String deviceIP, int devicePORT) throws Exception;
 
-    public abstract byte[] transmit(byte[] content) throws IOException, ProtocolException, CommunicationException;
+    public abstract byte[] transmit(byte[] content) throws Exception;
 
     public abstract Status disconnect() throws IOException, ProtocolException;
 
-    public abstract void connectRequest(String deviceIp, int devicePort, String sourceIp) throws IOException, ProtocolException, CommunicationException;
+    public abstract void connectRequest(String deviceIp, int devicePort, String sourceIp) throws Exception;
 
     // Passive
 
@@ -128,7 +130,7 @@ public abstract class FennecProtocol {
                 status = new Status(500);
             }
 
-            writeBytes(dos, LineParser.encodeLine(new String[]{"HELLO_RESULT", version, status.getCode()+"", status.getMsg()}, SP, CLRF));
+            writeBytes(dos, LineParser.encodeLine(new String[]{"HELLO_RESULT", version, status.getCode() + "", status.getMsg()}, SP, CLRF));
             //dos.writeBytes("HELLO_RESULT" + SP + version + FennecProtocol.SP + status.toString(SP) + CLRF);
             return protocol;
         }else{
@@ -139,7 +141,7 @@ public abstract class FennecProtocol {
 
     public abstract boolean processCommandLine(String line, ActiveRequestManager activeRequestManager) throws Exception;
 
-    public abstract byte[] transmitRequest(byte[] content) throws IOException, ProtocolException, CommunicationException;
+    public abstract byte[] transmitRequest(byte[] content) throws Exception;
 
 
 

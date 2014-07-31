@@ -61,7 +61,10 @@ public class LineParser {
     }
 
     public static String encodeLine(String[] a, String delim, String blockDelim){
-        String result = FennecProtocol.PRELUDE + encode(a[0]);
+        String result = FennecProtocol.PRELUDE;
+        // Si nos pasan un array vacio casca
+        if(a.length>0)
+            result = result + encode(a[0]);
         for(int i =1; i<a.length; i++){
             result = result + delim + encode(a[i]);
         }

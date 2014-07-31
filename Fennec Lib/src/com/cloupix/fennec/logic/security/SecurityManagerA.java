@@ -1,12 +1,10 @@
 package com.cloupix.fennec.logic.security;
 
-import com.cloupix.fennec.logic.network.FennecProtocol;
+import com.cloupix.fennec.business.CipheredContent;
+import com.cloupix.fennec.business.CipheredContentA;
+import com.cloupix.fennec.util.R;
 
-import java.io.UnsupportedEncodingException;
-import java.security.KeyFactory;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
@@ -48,25 +46,14 @@ public class SecurityManagerA extends SecurityManager {
         this.privKey = KeyFactory.getInstance("RSA").generatePrivate(new X509EncodedKeySpec(encodedPrivKey));
     }
 
-
     @Override
-    public byte[] cipher(String msg) {
-        return cipher(msg.getBytes());
+    public CipheredContent cipher(byte[] content) throws Exception {
+        return new CipheredContentA(cipherWithPrivate(content));
     }
 
     @Override
-    public byte[] cipher(byte[] content) {
-        return content;
-    }
-
-    @Override
-    public byte[] decipher(byte[] content) {
-        return content;
-    }
-
-    @Override
-    public String decipherToString(byte[] content) throws UnsupportedEncodingException {
-        return new String(decipher(content), "utf-8");
+    public byte[] decipher(CipheredContent cipheredContent) throws Exception {
+        return decipherWithPublic(cipheredContent.getFullContent());
     }
 
     @Override
@@ -102,6 +89,6 @@ public class SecurityManagerA extends SecurityManager {
     }
 
     public String decipherWithPublicToString(byte[] content) throws Exception {
-        return new String(decipherWithPublic(content), "utf-8");
+        return new String(decipherWithPublic(content), R.charset);
     }
 }

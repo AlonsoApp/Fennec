@@ -12,6 +12,9 @@ import java.net.Socket;
  */
 public class Session implements Runnable, ProtocolV1CallbacksServices{
 
+    //TODO Esto no dbería estar aqui
+    private byte[] authkey;
+
     private Socket sourceSocket;
     private PassiveRequestManager passiveRequestManager = null;
 
@@ -40,5 +43,30 @@ public class Session implements Runnable, ProtocolV1CallbacksServices{
     public boolean isAlive() {
         //TODO Currarse más este método
         return !sourceSocket.isClosed();
+    }
+
+    @Override
+    public void storeAuthKey(byte[] authKey) {
+
+        //TODO Guardar la AuthKey
+        this.authkey = authKey;
+    }
+
+    @Override
+    public byte[] getAuthKey() {
+        //TODO Dar una AuthKey
+        return authkey;
+    }
+
+    @Override
+    public String getAuthKeySha() {
+        //TODO De momento no se usa, si se considera necesario implementarlo, si no borrarlo
+        return null;
+    }
+
+    @Override
+    public Profile getProfile() {
+        // TODO devolver el profile del device
+        return new Profile();
     }
 }

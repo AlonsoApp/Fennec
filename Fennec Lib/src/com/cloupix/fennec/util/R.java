@@ -29,6 +29,8 @@ public abstract class R {
 
     protected int nodeType;
 
+    public static final String charset = "utf-8";
+
     // TODO Almacenar esto bien
     private String authKey;
 
