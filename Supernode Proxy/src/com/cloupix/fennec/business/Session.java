@@ -1,16 +1,16 @@
 package com.cloupix.fennec.business;
 
 import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksSupernode;
+import com.cloupix.fennec.logic.Logic;
 import com.cloupix.fennec.logic.network.PassiveRequestManager;
 import com.cloupix.fennec.logic.security.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
-import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.*;
+import java.security.cert.*;
+import java.security.cert.Certificate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,11 +20,7 @@ import java.util.Map;
  */
 public class Session implements Runnable, ProtocolV1CallbacksSupernode{
 
-    // TODO Esto no debería ir aqui, tiene que ir en una base de datos
-    private KeyPair keyPair;
-
-    private String clientAuthKeySha;
-    private byte[] clientAuthKey;
+    private Logic logic;
 
     private HashMap<String, byte[]> map;
 
@@ -32,6 +28,9 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
     private PassiveRequestManager passiveRequestManager = null;
 
     public Session(Socket sourceSocket) throws IOException {
+        this.logic = new Logic();
+
+
         this.sourceSocket = sourceSocket;
         this.passiveRequestManager = new PassiveRequestManager(sourceSocket, this);
     }
@@ -45,6 +44,7 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
         //TODO Con un return aqui es sufuciente para terminar el thread? o hay que hacer Thread.stop()
         if(!isAlive())
             return;
+
         try{
             passiveRequestManager.start();
         }catch (Exception e){
@@ -56,24 +56,17 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
     }
 
     public boolean isAlive() {
-        //TODO Currarse más este método
         return !sourceSocket.isClosed();
     }
 
     @Override
-    public PublicKey getCertPublicKey() throws NoSuchAlgorithmException {
-        // TODO Sacar esto de la base de datos
-        if(keyPair==null)
-            keyPair = AsymmetricCipher.generateKeyPair("RSA/ECB/PKCS1Padding", 512);
-        return keyPair.getPublic();
-    }
-
-    @Override
-    public PrivateKey getCertPrivateKey() throws NoSuchAlgorithmException {
-        // TODO Sacar esto de la base de datos
-        if(keyPair==null)
-            keyPair = AsymmetricCipher.generateKeyPair("RSA/ECB/PKCS1Padding", 512);
-        return keyPair.getPrivate();
+    public KeyPair getKeyPair() {
+        try {
+            return logic.getSupernodeKeyPair();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -95,5 +88,20 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Certificate getSignedCert() {
+        try {
+            return logic.getSupernodeCert();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public PublicKey verifyCert(Certificate cert) {
+        return logic.verifyNodeCert(cert);
     }
 }
