@@ -48,12 +48,12 @@ public class SecurityManagerA extends SecurityManager {
 
     @Override
     public CipheredContent cipher(byte[] content) throws Exception {
-        return new CipheredContentA(cipherWithPrivate(content));
+        return cipherWithPublic(content);
     }
 
     @Override
     public byte[] decipher(CipheredContent cipheredContent) throws Exception {
-        return decipherWithPublic(cipheredContent.getFullContent());
+        return decipherWithPrivate(cipheredContent);
     }
 
     @Override
@@ -67,20 +67,20 @@ public class SecurityManagerA extends SecurityManager {
     }
 
 
-    public byte[] cipherWithPublic(byte[] content) throws Exception {
-        return AsymmetricCipher.encrypt(content, pubKey, getXform());
+    public CipheredContentA cipherWithPublic(byte[] content) throws Exception {
+        return new CipheredContentA(AsymmetricCipher.encrypt(content, pubKey, getXform()));
     }
 
-    public byte[] cipherWithPrivate(byte[] content) throws Exception {
-        return AsymmetricCipher.encrypt(content, privKey, getXform());
+    public CipheredContentA cipherWithPrivate(byte[] content) throws Exception {
+        return new CipheredContentA(AsymmetricCipher.encrypt(content, privKey, getXform()));
     }
 
-    public byte[] decipherWithPublic(byte[] content) throws Exception {
-        return AsymmetricCipher.decrypt(content, pubKey, getXform());
+    public byte[] decipherWithPublic(CipheredContent cipheredContent) throws Exception {
+        return AsymmetricCipher.decrypt(cipheredContent.getFullContent(), pubKey, getXform());
     }
 
-    public byte[] decipherWithPrivate(byte[] content) throws Exception {
-        return AsymmetricCipher.decrypt(content, privKey, getXform());
+    public byte[] decipherWithPrivate(CipheredContent cipheredContent) throws Exception {
+        return AsymmetricCipher.decrypt(cipheredContent.getFullContent(), privKey, getXform());
     }
 
     private String getXform(){
@@ -88,7 +88,7 @@ public class SecurityManagerA extends SecurityManager {
         return "RSA/ECB/PKCS1Padding";
     }
 
-    public String decipherWithPublicToString(byte[] content) throws Exception {
-        return new String(decipherWithPublic(content), R.charset);
+    public String decipherWithPublicToString(CipheredContent cipheredContent) throws Exception {
+        return new String(decipherWithPublic(cipheredContent), R.charset);
     }
 }

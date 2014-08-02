@@ -55,8 +55,8 @@ public class AES {
 
         try {
             String key = "26daa744bc5d5c3901911f472c3d59a1dfa03d68";
-            byte[] ciphertext = encrypt(key, "1234567890123456".getBytes());
-            System.out.println("decrypted value:" + new String(decrypt(key, ciphertext), "utf-8"));
+            byte[] ciphertext = cipher(key, "1234567890123456".getBytes());
+            System.out.println("decrypted value:" + new String(decipher(key, ciphertext), "utf-8"));
 
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class AES {
         */
     }
 
-    public static byte[] encrypt(String key, byte[] value) throws GeneralSecurityException {
+    public static byte[] cipher(String key, byte[] value) throws GeneralSecurityException {
 
         byte[] raw = SecurityManager.hex2ByteArray(key);
 
@@ -83,7 +83,7 @@ public class AES {
         return cipher.doFinal(value);
     }
 
-    public static byte[] decrypt(String key, byte[] encrypted) throws GeneralSecurityException {
+    public static byte[] decipher(String key, byte[] encrypted) throws GeneralSecurityException {
 
         byte[] raw = SecurityManager.hex2ByteArray(key);
 

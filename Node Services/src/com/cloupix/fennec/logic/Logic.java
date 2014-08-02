@@ -2,10 +2,15 @@ package com.cloupix.fennec.logic;
 
 import com.cloupix.fennec.util.R;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.security.*;
-import java.security.cert.*;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 
 /**
  * Created by AlonsoUSA on 01/08/14.
@@ -18,30 +23,9 @@ public class Logic {
 
 
 
-
-    public byte[] validateSha(String sha) {
-        // TODO Validar
-        // TODO devolver el authKey propio de ese sha
-        return null;
-    }
-
-    public boolean registerDevice(byte[] authKey) {
-        // TODO Guardar en BBDD
-        try {
-            String sha = com.cloupix.fennec.logic.security.SecurityManager.SHAsum(authKey);
-            //map.put(sha, authKey);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-
     // KEYSTORE STUFF
 
-    public KeyPair getSupernodeKeyPair() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException, UnrecoverableKeyException {
+    public KeyPair getKeyPair() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException, UnrecoverableKeyException {
         KeyPair keyPair = R.getInstance().getKeyPair();
         if(keyPair!=null)
             return keyPair;
@@ -70,7 +54,7 @@ public class Logic {
         return null;
     }
 
-    public Certificate getSupernodeCert() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException, UnrecoverableKeyException {
+    public Certificate getCert() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException, UnrecoverableKeyException {
         Certificate cert = R.getInstance().getSignedCertificate();
         if(cert!=null)
             return cert;
@@ -86,15 +70,8 @@ public class Logic {
         return keystore.getCertificate(alias);
     }
 
-    public PublicKey getCertPublicKey() throws NoSuchAlgorithmException, IOException, KeyStoreException, CertificateException, UnrecoverableKeyException {
-        return getSupernodeKeyPair().getPublic();
-    }
 
-    public PrivateKey getCertPrivateKey() throws NoSuchAlgorithmException, UnrecoverableKeyException, CertificateException, KeyStoreException, IOException {
-        return getSupernodeKeyPair().getPrivate();
-    }
-
-    public PublicKey verifyNodeCert(Certificate cert) {
+    public PublicKey verifyCert(Certificate cert) {
         InputStream inStream = null;
         try {
 

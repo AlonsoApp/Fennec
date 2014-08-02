@@ -7,20 +7,19 @@ import com.cloupix.fennec.business.Status;
 import com.cloupix.fennec.business.exceptions.AuthenticationException;
 import com.cloupix.fennec.business.exceptions.CommunicationException;
 import com.cloupix.fennec.business.exceptions.ProtocolException;
-import com.cloupix.fennec.business.exceptions.SessionException;
 import com.cloupix.fennec.business.interfaces.ProtocolCallbacks;
 import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksServices;
 import com.cloupix.fennec.logic.security.*;
 import com.cloupix.fennec.logic.security.SecurityManager;
 import com.cloupix.fennec.util.R;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
-import java.security.GeneralSecurityException;
+import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 
 /**
  * Created by AlonsoUSA on 19/07/14.
@@ -86,7 +85,6 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         SecurityManagerA securityManagerA = (SecurityManagerA) securityManager;
 
         writeBytes(LineParser.encodeLine(new String[]{"VERIFY_A_0"}, SP, CLRF));
-        //dos.writeBytes("VERIFY_A_0" + CLRF);
 
         /** Esperamos respuesta del Supernode */
         String responseLine = br.readLine();
@@ -94,10 +92,14 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         LineParser lineParser = new LineParser(responseLine, SP);
 
         lineParser.validateNext("VERIFY_A_0_RESULT");
-        byte[] snPubKey = getContentNoCommand();
-
+        byte[] content = getContentNoCommand();
 
         try {
+            // Convertimos ese byte[] en un Certificate
+            CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+            InputStream in = new ByteArrayInputStream(content);
+            Certificate cert = certFactory.generateCertificate(in);
+            PublicKey snPubKey = mProtocolCallbacks.verifyCert(cert);
             securityManagerA.setPubKey(snPubKey);
         } catch (Exception e) {
             Status status = new Status(400);
@@ -108,7 +110,6 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         }
         Status status = new Status(100);
         writeBytes(LineParser.encodeLine(new String[]{"VERIFY_A_1", status.getCode() + "", status.getMsg()}, SP, CLRF));
-        //dos.writeBytes("VERIFY_A_1" + SP +(new Status(100)).toString(SP) + CLRF);
 
         /** Esperamos respuesta del Supernode */
 
@@ -117,7 +118,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
         String responseBlock = null;
         try {
-            responseBlock = securityManagerA.decipherWithPublicToString(cipheredContent.getFullContent());
+            responseBlock = securityManagerA.decipherWithPublicToString(cipheredContent);
         } catch (Exception e) {
             throw new AuthenticationException(AuthenticationException.AUTH_PROCESS_FAILED,
                     "El descifrado del certificado ha fallado, la validación del supernodo es fallida.");
@@ -158,8 +159,81 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
     }
 
-    public void authenticatePure() throws ProtocolException, IOException, AuthenticationException, CommunicationException, NoSuchAlgorithmException {
-        writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE"}, SP, CLRF));
+    public void authenticatePure() throws Exception {
+        if(securityManager instanceof SecurityManagerA)
+            authenticateA();
+        else if(securityManager instanceof SecurityManagerB)
+            authenticateB();
+    }
+
+    public void authenticateA() throws Exception {
+        SecurityManagerA securityManagerA = (SecurityManagerA) securityManager;
+
+        /** Mandamos el commando cifrado con su priv */
+
+        writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE_A_0"}, SP, CLRF));
+
+        KeyPair keyPair = mProtocolCallbacks.getKeyPair();
+
+        /** Si el nivel es 0 sacamos nuestro certificado firmado y se lo mandamos cifraco con su publica */
+        byte[] content;
+        if(securityManager.getSecurityLevel().getSecurityLevel() == 0){
+            content = mProtocolCallbacks.getSignedCert().getEncoded();
+        }else{
+            // Si no es 0 simplemente le mandamos nuestra pub cifraca con su pub
+            content = keyPair.getPublic().getEncoded();
+        }
+
+        sendContentNoCommand(content);
+
+
+        /** Esperamos respuesta del Supernode */
+
+        //cipheredContent = getCipheredContent();
+        String responseLine = br.readLine();
+
+        LineParser lineParser = new LineParser(responseLine, SP);
+
+        lineParser.validateNext("AUTHENTICATE_A_0_RESULT");
+        // Sacamos el status code y el message
+        int statusCode = lineParser.getNextInt();
+        String statusMsg = lineParser.getNext();
+        //Si el stausCode no es el esperado o uno de los esperados lanzamos excepción
+        if(statusCode != 100)
+            throw new CommunicationException(new Status(statusCode, statusMsg));
+
+        securityManagerA.setPrivKey(keyPair.getPrivate());
+
+
+        /** Mandamos nuestro authKey cifracon con nuestra privada y con su publica */
+        String line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_1"}, SP, CLRF);
+
+        CipheredContent cipheredContent = securityManager.cipher(line.getBytes(R.charset));
+        sendCipheredContent(cipheredContent);
+
+        byte[] authKey = mProtocolCallbacks.getAuthKey();
+        cipheredContent = securityManagerA.cipherWithPrivate(authKey);
+        cipheredContent = securityManager.cipher(cipheredContent.getFullContent());
+
+        sendCipheredContent(cipheredContent);
+
+        /** Esperamos respuesta (sin cifrar) del Supernode */
+        responseLine = br.readLine();
+
+        lineParser = new LineParser(responseLine, SP);
+
+        lineParser.validateNext("AUTHENTICATE_A_1_RESULT");
+        // Sacamos el status code y el message
+        statusCode = lineParser.getNextInt();
+        statusMsg = lineParser.getNext();
+        //Si el stausCode no es el esperado o uno de los esperados lanzamos excepción
+        if(statusCode != 200)
+            throw new CommunicationException(new Status(statusCode, statusMsg));
+
+    }
+
+    public void authenticateB()  throws ProtocolException, IOException, AuthenticationException, CommunicationException, NoSuchAlgorithmException  {
+        writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE_B"}, SP, CLRF));
 
         byte[] authKey = mProtocolCallbacks.getAuthKey();
 
@@ -173,7 +247,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         /** Iniciamos espera a ver si el Supernode nos conoce */
         String responseLine = br.readLine();
         LineParser lineParser = new LineParser(responseLine, SP);
-        lineParser.validateNext("AUTHENTICATE_RESULT");
+        lineParser.validateNext("AUTHENTICATE_B_RESULT");
         // Sacamos el status code y el message
         int statusCode = lineParser.getNextInt();
         String statusMsg = lineParser.getNext();
@@ -402,7 +476,6 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
             status = new Status(200);
             writeBytes(LineParser.encodeLine(new String[]{"CONNECT_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
-            //dos.writeBytes("CONNECT_RESULT" + SP + (new Status(200)).toString(SP) + CLRF);
 
         }catch (CommunicationException eC){
             status = eC.getStaus();
@@ -419,7 +492,6 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
             // TODO tratar la excepcion y mandar una respuesta acorde
             Status status = new Status(200);
             writeBytes(LineParser.encodeLine(new String[]{"TRANSMIT_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
-            //dos.writeBytes("TRANSMIT_RESULT" + SP + (new Status(200)).toString(SP) + CLRF);
             sendContentNoCommand(content);
 
         }catch (CommunicationException eC){
@@ -439,7 +511,6 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
             Status status = new Status(200);
             String resultLine = LineParser.encodeLine(new String[]{"CONNECT_REQUEST_RESULT", status.getCode()+"", status.getMsg()}, SP, CLRF);
-            //String resultLine = "CONNECT_REQUEST_RESULT" + SP + (new Status(200)).toString(SP) + CLRF;
 
             CipheredContent cipheredContent = securityManager.cipher(resultLine.getBytes(R.charset));
             sendCipheredContent(cipheredContent);

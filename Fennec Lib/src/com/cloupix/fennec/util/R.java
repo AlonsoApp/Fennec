@@ -1,5 +1,8 @@
 package com.cloupix.fennec.util;
 
+import java.security.KeyPair;
+import java.security.cert.Certificate;
+
 /**
  * Created by AlonsoUSA on 30/06/14.
  *
@@ -18,6 +21,11 @@ public abstract class R {
     protected int portInternalListener;
     protected int portExternal;
     protected int portExternalListener;
+
+    protected String keystorePath;
+    protected String rootcaPath;
+    private KeyPair keyPair;
+    private Certificate signedCertificate;
 
     public int getNodeType() {
         return nodeType;
@@ -108,5 +116,37 @@ public abstract class R {
 
     public void setAuthKey(String authKey) {
         this.authKey = authKey;
+    }
+
+    public String getKeystorePath() {
+        return keystorePath;
+    }
+
+    public void setKeystorePath(String keystorePath) {
+        this.keystorePath = keystorePath;
+    }
+
+    public String getRootcaPath() {
+        return rootcaPath;
+    }
+
+    public void setRootcaPath(String rootcaPath) {
+        this.rootcaPath = rootcaPath;
+    }
+
+    public void setKeyPair(KeyPair keyPair) {
+        this.keyPair = keyPair;
+    }
+
+    public KeyPair getKeyPair() {
+        return keyPair;
+    }
+
+    public void setSignedCertificate(Certificate signedCertificate) {
+        this.signedCertificate = signedCertificate;
+    }
+
+    public Certificate getSignedCertificate() {
+        return signedCertificate;
     }
 }

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateEncodingException;
 
 /**
  * Created by AlonsoUSA on 16/07/14.
@@ -89,7 +90,7 @@ public abstract class FennecProtocol {
 
     public abstract SecurityLevel negotiateSecurityLevel() throws ProtocolException, IOException, CommunicationException;
 
-    public abstract void verify() throws SessionException, IOException;
+    public abstract void verify() throws SessionException, IOException, CertificateEncodingException;
 
     public abstract void authenticate() throws Exception;
 

@@ -10,6 +10,7 @@ import com.cloupix.fennec.util.R;
 import java.io.*;
 import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateEncodingException;
 
 /**
  * Created by AlonsoUSA on 04/07/14.
@@ -44,7 +45,7 @@ public class ActiveRequestManager {
         protocol.init();
     }
 
-    public void verifyTarget() throws SessionException, IOException {
+    public void verifyTarget() throws SessionException, IOException, CertificateEncodingException {
         protocol.verify();
     }
 

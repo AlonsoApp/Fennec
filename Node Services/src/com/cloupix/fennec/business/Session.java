@@ -1,16 +1,22 @@
 package com.cloupix.fennec.business;
 
 import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksServices;
+import com.cloupix.fennec.logic.Logic;
 import com.cloupix.fennec.logic.network.PassiveRequestManager;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.security.KeyPair;
+import java.security.PublicKey;
+import java.security.cert.Certificate;
 
 /**
  * Created by AlonsoUSA on 30/06/14.
  *
  */
 public class Session implements Runnable, ProtocolV1CallbacksServices{
+
+    private Logic logic;
 
     //TODO Esto no dbería estar aqui
     private byte[] authkey;
@@ -19,6 +25,8 @@ public class Session implements Runnable, ProtocolV1CallbacksServices{
     private PassiveRequestManager passiveRequestManager = null;
 
     public Session(Socket sourceSocket) throws IOException {
+        this.logic = new Logic();
+
         this.sourceSocket = sourceSocket;
         this.passiveRequestManager = new PassiveRequestManager(sourceSocket, this);
     }
@@ -68,5 +76,30 @@ public class Session implements Runnable, ProtocolV1CallbacksServices{
     public Profile getProfile() {
         // TODO devolver el profile del device
         return new Profile();
+    }
+
+    @Override
+    public KeyPair getKeyPair() {
+        try {
+            return logic.getKeyPair();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Certificate getSignedCert() {
+        try {
+            return logic.getCert();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public PublicKey verifyCert(Certificate cert) {
+        return logic.verifyCert(cert);
     }
 }

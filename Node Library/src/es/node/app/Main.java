@@ -4,7 +4,6 @@ import com.cloupix.fennec.business.Session;
 import com.cloupix.fennec.util.R;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -21,8 +20,6 @@ public class Main {
         loadConfig();
 
 
-        System.out.print("Brah: ");
-        String msg = leerCadena();
         long oTime = System.currentTimeMillis();
         long iTime = 0;
 
@@ -31,18 +28,28 @@ public class Main {
         try {
             session.connect(DEVICE_DEMO_IP, DEVICE_DEMO_PORT);
             System.out.println("Connected :)");
-            byte[] rawResult = session.transmit(msg.getBytes());
-            System.out.println("Transmited :D");
-            result = new String(rawResult, "utf-8");
+            System.out.println();
+            String msg = "";
+            do{
+                System.out.print("Brah: ");
+                msg = leerCadena();
+
+                byte[] rawResult = session.transmit(msg.getBytes(R.charset));
+                //System.out.println("Transmited :)");
+                result = new String(rawResult, "utf-8");
+                System.out.println("Respuesta: " + result);
+            }while (!msg.equals("quit"));
+
             session.disconnect();
-            System.out.println("Disconnected 8D");
+
+            System.out.println();
+            System.out.println("Disconnected :)");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         iTime = System.currentTimeMillis();
 
-        System.out.println("Respuesta: " + result);
         System.out.println("Tiempo: " + (iTime - oTime) + "ms");
     }
 

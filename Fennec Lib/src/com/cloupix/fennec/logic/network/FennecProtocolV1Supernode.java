@@ -1,9 +1,6 @@
 package com.cloupix.fennec.logic.network;
 
-import com.cloupix.fennec.business.BlockParser;
-import com.cloupix.fennec.business.CipheredContent;
-import com.cloupix.fennec.business.LineParser;
-import com.cloupix.fennec.business.Status;
+import com.cloupix.fennec.business.*;
 import com.cloupix.fennec.business.exceptions.AuthenticationException;
 import com.cloupix.fennec.business.exceptions.CommunicationException;
 import com.cloupix.fennec.business.exceptions.ProtocolException;
@@ -13,16 +10,17 @@ import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksSupernode;
 import com.cloupix.fennec.logic.security.DHKeyAgreementBob;
 import com.cloupix.fennec.logic.security.SecurityLevel;
 import com.cloupix.fennec.logic.security.SecurityManagerA;
+import com.cloupix.fennec.logic.security.SecurityManagerB;
 import com.cloupix.fennec.util.R;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateFactory;
 
 /**
  * Created by AlonsoUSA on 19/07/14.
@@ -38,32 +36,20 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
     }
 
     @Override
-    public void verify() throws SessionException, IOException {
+    public void verify() throws SessionException, IOException, CertificateEncodingException {
         if(securityManager.getSecurityLevel().getSecurityClass().equals("A")){
             verifyA();
         }
     }
 
-    public void verifyA() throws IOException, SessionException {
+    public void verifyA() throws IOException, SessionException, CertificateEncodingException {
         SecurityManagerA securityManagerA = (SecurityManagerA) securityManager;
 
+        byte[] content = mProtocolCallbacks.getSignedCert().getEncoded();
+
         writeBytes(LineParser.encodeLine(new String[]{"VERIFY_A_0_RESULT"}, SP, CLRF));
-        //dos.writeBytes("VERIFY_A_0_RESULT" + CLRF);
 
-        PublicKey pubKey = null;
-        PrivateKey privKey = null;
-        try {
-            pubKey = mProtocolCallbacks.getCertPublicKey();
-            privKey = mProtocolCallbacks.getCertPrivateKey();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new SessionException("Error al obtener la clave publica y la privada");
-        }
-
-        sendContentNoCommand(pubKey.getEncoded());
-
-        securityManagerA.setPubKey(pubKey);
-        securityManagerA.setPrivKey(privKey);
+        sendContentNoCommand(content);
 
         /** Esperamos respuesta del Supernode */
         String responseLine = br.readLine();
@@ -79,23 +65,99 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
             throw new CommunicationException(new Status(statusCode, statusMsg));
 
 
-        String resultBlock = "VERIFY_A_1_RESULT" + SP + (new Status(200)).toString(SP);
-        CipheredContent cipheredContent = new CipheredContent();
+        KeyPair keyPair = mProtocolCallbacks.getKeyPair();
+        if(keyPair == null)
+            throw new SessionException("Error al obtener la clave publica y la privada");
+
+        securityManagerA.setPrivKey(keyPair.getPrivate());
+
+
+        String line = "VERIFY_A_1_RESULT" + SP + (new Status(200)).toString(SP);
+        CipheredContent cipheredContent;
         try {
-            cipheredContent = securityManagerA.cipher(resultBlock.getBytes(R.charset));
+            cipheredContent = securityManagerA.cipherWithPrivate(line.getBytes(R.charset));
+            sendCipheredContent(cipheredContent);
         } catch (Exception e) {
-            resultBlock = "VERIFY_A_1_RESULT" + SP + (new Status(500)).toString(SP);
-            // TODO Esto esta mal porque el Nodo espera un mensaje cifrado, como el casque se ha producido al cifrar
-            // no se puede cifrar la respuesta, va a intentar descifrar un mensaje no decifrado y va a considerarlo casque
-            sendContent(resultBlock.getBytes(R.charset));
+            line = "VERIFY_A_1_RESULT" + SP + (new Status(500)).toString(SP);
+            writeBytes(line);
+            throw new AuthenticationException(AuthenticationException.AUTH_PROCESS_FAILED, "Error al cifrar con privKey");
+            // TODO Sigue estando el fallo de que si sale bien se envia cifrada la respuesta y si sale mal no. Lo va a descifrar y dará casque
         }
 
-        sendCipheredContent(cipheredContent);
 
     }
 
     @Override
-    public void authenticate() throws IOException, ProtocolException, AuthenticationException, CommunicationException, NoSuchAlgorithmException {
+    public void authenticate() throws Exception {
+        if(securityManager instanceof SecurityManagerA)
+            authenticateA();
+        else if(securityManager instanceof SecurityManagerB)
+            authenticateB();
+    }
+
+    public void authenticateA() throws Exception {
+        SecurityManagerA securityManagerA = (SecurityManagerA) securityManager;
+
+        byte[] content = getContentNoCommand();
+
+        /** Si el nivel es 0 verificamos el cert signed que nos ha mandando */
+        if(securityManager.getSecurityLevel().getSecurityLevel() == 0){
+            // Convertimos ese byte[] en un Certificate
+            CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+            InputStream in = new ByteArrayInputStream(content);
+            Certificate cert = certFactory.generateCertificate(in);
+            PublicKey nodePubKey = mProtocolCallbacks.verifyCert(cert);
+
+            if(nodePubKey==null){
+                //Verificacion erronea
+                Status status = new Status(401);
+                String line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_0_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF);
+                writeBytes(line);
+                throw new AuthenticationException(AuthenticationException.AUTH_PROCESS_FAILED, "La verificación del certificado del nodo ha dado como resultado negativo");
+            }
+
+            // Guardamos el pubKey para cifrar mas adelante
+            securityManagerA.setPubKey(nodePubKey);
+        }else{
+            // Si no, simplemente guardamos su publica
+            try{
+                securityManagerA.setPubKey(content);
+            }catch (Exception e){
+                Status status = new Status(401);
+                String line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_0_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF);
+                writeBytes(line);
+                throw new AuthenticationException(AuthenticationException.AUTH_PROCESS_FAILED, "Fallo al decodificar clave publica del nodo");
+            }
+        }
+
+
+
+        /** Respondemos con un continue */
+        Status status = new Status(100);
+        String line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_0_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF);
+        writeBytes(line);
+
+
+        /** Recibimos el auth cifrado con la privada dle nodo y cifrado con nuestra publica */
+        CipheredContent cipheredContent = getCipheredContent();
+        line = securityManager.decipherToString(cipheredContent);
+        LineParser lineParser = new LineParser(line, SP);
+        lineParser.validateNext("AUTHENTICATE_A_1");
+        cipheredContent = getCipheredContent();
+        content = securityManager.decipher(cipheredContent);
+
+
+        byte[] authKey = securityManagerA.decipherWithPublic(new CipheredContentA(content));
+
+        securityManager.setAuthKey(authKey);
+
+        status = new Status(200);
+        line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_1_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF);
+        writeBytes(line);
+
+    }
+
+    public void authenticateB() throws IOException, ProtocolException, AuthenticationException, CommunicationException, NoSuchAlgorithmException {
         String responseLine = br.readLine();
 
         LineParser lineParser = new LineParser(responseLine, SP);
@@ -106,11 +168,11 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
 
         if(authKey!=null){
             Status status = new Status(200);
-            writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
+            writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE_B_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
             securityManager.setAuthKey(authKey);
         }else{
             Status status = new Status(403);
-            writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
+            writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE_B_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
         }
     }
 
@@ -274,7 +336,11 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
 
             negotiateSecurityLevel();
 
-        }else if(command.equals("AUTHENTICATE")){
+        }else if(command.equals("AUTHENTICATE_A_0")){
+
+            authenticate();
+
+        }else if(command.equals("AUTHENTICATE_B")){
 
             authenticate();
 

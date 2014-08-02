@@ -163,7 +163,6 @@ public abstract class FennecProtocolV1 extends FennecProtocol {
         {
             b = dis.readByte();
             //buffer[i] = b;
-
             /** SUPERÑAPA
              * Este if comprueba si el primer byte es 10 (10 en ascii es /n)
              * Este byte se introduce aleatoriamente en las comunicaciones por sockets de Java

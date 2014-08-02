@@ -15,5 +15,8 @@ public class ServicesR extends R{
         this.portExternal = 1170;
         this.portInternalListener = 1171;
         this.portExternalListener = 1172;
+
+        this.keystorePath = "./Node Services/data/keystore.jks";
+        this.rootcaPath = "./Node Services/data/root_ca.pem";
     }
 }

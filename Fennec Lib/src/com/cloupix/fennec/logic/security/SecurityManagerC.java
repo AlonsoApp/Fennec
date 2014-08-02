@@ -22,12 +22,12 @@ public class SecurityManagerC extends SecurityManager {
     @Override
     public CipheredContent cipher(byte[] content) throws GeneralSecurityException, UnsupportedEncodingException {
 
-        return new CipheredContentC(AES.encrypt(byteArray2Hex(authKey), content));
+        return new CipheredContentC(AES.cipher(byteArray2Hex(authKey), content));
     }
 
     @Override
     public byte[] decipher(CipheredContent cipheredContent) throws GeneralSecurityException, UnsupportedEncodingException {
-        return AES.decrypt(byteArray2Hex(authKey), cipheredContent.getFullContent());
+        return AES.decipher(byteArray2Hex(authKey), cipheredContent.getFullContent());
     }
 
     @Override

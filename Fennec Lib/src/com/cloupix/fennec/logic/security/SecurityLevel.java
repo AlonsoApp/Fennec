@@ -1,7 +1,6 @@
 package com.cloupix.fennec.logic.security;
 
 import com.cloupix.fennec.business.Profile;
-import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksServices;
 
 /**
  * Created by AlonsoUSA on 22/07/14.
@@ -42,6 +41,6 @@ public class SecurityLevel {
 
     public static SecurityLevel generate(Profile profile){
         // TODO Hacer todo el análisis del dispositivo para determinar el securityLevel
-        return new SecurityLevel("B", 0);
+        return new SecurityLevel("A", 1);
     }
 }

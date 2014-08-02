@@ -13,5 +13,8 @@ public class SupernodeR extends R{
         this.portExternal = 1172;
         this.portInternalListener = 1171;
         this.portExternalListener = 1170;
+
+        this.keystorePath = "./Supernode Proxy/data/keystore.jks";
+        this.rootcaPath = "./Supernode Proxy/data/root_ca.pem";
     }
 }

@@ -1,8 +1,9 @@
 package com.cloupix.fennec.business.interfaces;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.io.IOException;
+import java.security.*;
+import java.security.cert.*;
+import java.security.cert.Certificate;
 
 /**
  * Created by AlonsoUSA on 24/07/14.
@@ -10,11 +11,13 @@ import java.security.PublicKey;
  */
 public interface ProtocolV1CallbacksSupernode extends ProtocolV1Callbacks {
 
-    PublicKey getCertPublicKey() throws NoSuchAlgorithmException;
-
-    PrivateKey getCertPrivateKey() throws NoSuchAlgorithmException;
+    KeyPair getKeyPair();
 
     byte[] validateSha(String sha);
 
     boolean registerDevice(byte[] authKey);
+
+    Certificate getSignedCert();
+
+    PublicKey verifyCert(Certificate cert);
 }
