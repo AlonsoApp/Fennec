@@ -1,8 +1,7 @@
 package com.cloupix.fennec.dao;
 
-import java.io.FileInputStream;
-import java.security.*;
-import java.security.cert.Certificate;
+import com.cloupix.fennec.business.AnalyticAuthentication;
+
 import java.sql.*;
 
 /**
@@ -11,71 +10,101 @@ import java.sql.*;
  */
 public class Dao {
 
-    public static void main( String args[] ) {
-        Connection c = null;
-        Statement stmt = null;
+    private static Connection con;
+    private static final String dataSource = "Supernode Proxy/data/supernode.db";
+    private static final String username = "root";
+    private static final String password = "demopassword";
+    private static final String driver = "org.sqlite.JDBC";
+    private static final String protocol = "jdbc:sqlite";
 
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-
-            // --- Secure ---
-            String selectStatement = "SELECT * FROM User WHERE userId = ? ";
-            PreparedStatement prepStmt = c.prepareStatement(selectStatement);
-            prepStmt.setString(1, "");
-            ResultSet rs = prepStmt.executeQuery();
-            // --- End-Secure ---
-
-            String keystoreFilename = "my.keystore";
-
-            char[] password = "password".toCharArray();
-            String alias = "alias";
-
-            FileInputStream fIn = new FileInputStream(keystoreFilename);
-            KeyStore keystore = KeyStore.getInstance("JKS");
-
-            keystore.load(fIn, password);
-
-            Key key = keystore.getKey(alias, "password".toCharArray());
-            if (key instanceof PrivateKey) {
-                // Get certificate of public key
-                Certificate cert = keystore.getCertificate(alias);
-
-                // Get public key
-                PublicKey publicKey = cert.getPublicKey();
-
-                // Return a key pair
-                new KeyPair(publicKey, (PrivateKey) key);
-            }
-
-
-
-            stmt = c.createStatement();
-            String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (1, 'Paul', 32, 'California', 20000.00 );";
-            stmt.executeUpdate(sql);
-
-            sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (2, 'Allen', 25, 'Texas', 15000.00 );";
-            stmt.executeUpdate(sql);
-
-            sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (3, 'Teddy', 23, 'Norway', 20000.00 );";
-            stmt.executeUpdate(sql);
-
-            sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) " +
-                    "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );";
-            stmt.executeUpdate(sql);
-
-            stmt.close();
-            c.commit();
-            c.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+    public void open(){
+        try{
+            Class.forName(driver);
+            String url = protocol + ":" + dataSource;
+            con = DriverManager.getConnection(url);
+            con.setAutoCommit(false);
         }
-        System.out.println("Records created successfully");
+        catch (ClassNotFoundException clasEx) {
+            clasEx.printStackTrace();
+        }
+        catch(SQLException sqlEx){
+            sqlEx.printStackTrace();
+        }
+    }
+
+    public void close(){
+        if(con!=null)
+        {
+            try{
+                if(!con.isClosed())
+                    con.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void commitTransaccion() throws SQLException{
+        con.commit();
+    }
+
+    public void rollbackTransaccion() throws SQLException{
+        con.rollback();
+    }
+
+    public void createDatabase() throws SQLException {
+        open();
+
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_AUTHENTICATION);
+
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_CONNECTION_TYPE);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_TRANSMISSION_TYPE);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_DEVICE);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_DEVICE_CERTIFICATE);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_PROTOCOL_VERSION);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_SESSION);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_CONNECTION);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_SECURITY);
+        stmt.executeUpdate(ContractFennecDB.SQL_CREATE_TABLE_TRANSMISSION);
+
+
+        stmt.close();
+        commitTransaccion();
+        close();
+    }
+
+    public AnalyticAuthentication getAuthenticationBySha(String sha) throws SQLException {
+        String selectStatement = "SELECT * FROM " + ContractFennecDB.Authentication.TABLE_NAME +
+                " WHERE " + ContractFennecDB.Authentication.COLUMN_NAME_AUTH_KEY_SHA + " = ? ";
+        PreparedStatement prepStmt = con.prepareStatement(selectStatement);
+        prepStmt.setString(1, sha);
+        ResultSet rs = prepStmt.executeQuery();
+
+        AnalyticAuthentication authentication = null;
+        while (rs.next())
+        {
+            authentication = new AnalyticAuthentication();
+            authentication.setIdAuthentication(rs.getLong(1));
+            authentication.setAuthKeySha(rs.getString(2));
+            authentication.setAuthKey(rs.getBytes(3));
+        }
+        rs.close();
+        prepStmt.close();
+
+
+        return authentication;
+    }
+
+    public void insertAuthentication(AnalyticAuthentication analyticAuthentication) throws SQLException {
+        String insertQuery = "INSERT INTO " + ContractFennecDB.Authentication.TABLE_NAME +
+                " ("+ContractFennecDB.Authentication.COLUMN_NAME_AUTH_KEY_SHA+", "+ ContractFennecDB.Authentication.COLUMN_NAME_AUTH_KEY +
+                ") VALUES (?, ?)";
+        PreparedStatement prepStmt = con.prepareStatement(insertQuery);
+        prepStmt.setString(1, analyticAuthentication.getAuthKeySha());
+        prepStmt.setBytes(2, analyticAuthentication.getAuthKey());
+
+        prepStmt.executeUpdate();
+        prepStmt.close();
     }
 }

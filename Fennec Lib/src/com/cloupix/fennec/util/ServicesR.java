@@ -18,5 +18,6 @@ public class ServicesR extends R{
 
         this.keystorePath = "./Node Services/data/keystore.jks";
         this.rootcaPath = "./Node Services/data/root_ca.pem";
+        this.authKeyPath = "./Node Services/data/authkey.fnc";
     }
 }

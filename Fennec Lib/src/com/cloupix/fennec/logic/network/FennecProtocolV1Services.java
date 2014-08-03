@@ -75,7 +75,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
     @Override
     public void verify() throws ProtocolException, IOException, CommunicationException, AuthenticationException {
-        if(securityManager instanceof SecurityManagerA){
+        if(securityManager.getSecurityLevel().getSecurityClass().equals("A")){
             verifyA();
         }
 
@@ -113,7 +113,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
         /** Esperamos respuesta del Supernode */
 
-        CipheredContent cipheredContent = getCipheredContent();
+        CipheredContent cipheredContent = getCipheredContent(CipheredContent.CLASS_A);
 
 
         String responseBlock = null;
@@ -134,8 +134,6 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         if(statusCode != 200)
             throw new CommunicationException(new Status(statusCode, statusMsg));
 
-
-        //TODO Implementar esto
     }
 
     @Override
@@ -160,9 +158,10 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
     }
 
     public void authenticatePure() throws Exception {
-        if(securityManager instanceof SecurityManagerA)
+        if(securityManager.getSecurityLevel().getSecurityClass().equals("A") &&
+                securityManager.getSecurityLevel().getSecurityLevel()<2)
             authenticateA();
-        else if(securityManager instanceof SecurityManagerB)
+        else
             authenticateB();
     }
 
@@ -208,12 +207,12 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         /** Mandamos nuestro authKey cifracon con nuestra privada y con su publica */
         String line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_1"}, SP, CLRF);
 
-        CipheredContent cipheredContent = securityManager.cipher(line.getBytes(R.charset));
+        CipheredContent cipheredContent = securityManagerA.cipherWithPublic(line.getBytes(R.charset));
         sendCipheredContent(cipheredContent);
 
         byte[] authKey = mProtocolCallbacks.getAuthKey();
         cipheredContent = securityManagerA.cipherWithPrivate(authKey);
-        cipheredContent = securityManager.cipher(cipheredContent.getFullContent());
+        cipheredContent = securityManagerA.cipherWithPublic(cipheredContent.getFullContent());
 
         sendCipheredContent(cipheredContent);
 
@@ -227,9 +226,11 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         statusCode = lineParser.getNextInt();
         statusMsg = lineParser.getNext();
         //Si el stausCode no es el esperado o uno de los esperados lanzamos excepción
-        if(statusCode != 200)
+        if(statusCode == 403)
+            throw new AuthenticationException(AuthenticationException.FORBIDDEN, statusMsg);
+        else if(statusCode != 200)
             throw new CommunicationException(new Status(statusCode, statusMsg));
-
+        securityManager.setAuthKey(authKey);
     }
 
     public void authenticateB()  throws ProtocolException, IOException, AuthenticationException, CommunicationException, NoSuchAlgorithmException  {
@@ -238,8 +239,6 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         byte[] authKey = mProtocolCallbacks.getAuthKey();
 
         String strAuthKeySha = SecurityManager.SHAsum(authKey);
-
-        //String strAutKey = SecurityManager.byteArray2Hex(authKey);
 
         writeBytes(LineParser.encodeLine(new String[]{"SHA:", strAuthKeySha}, SP, CLRF));
 
@@ -295,7 +294,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         sendCipheredContent(cipheredLine);
 
         /** Iniciamos espera respuesta del Node Services */
-        CipheredContent cipheredContent = getCipheredContent();
+        CipheredContent cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         String responseLine = securityManager.decipherToString(cipheredContent);
 
         LineParser lineParser = new LineParser(responseLine, SP);
@@ -361,7 +360,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
 
         /** Recibimos la respuesta y su contenido del SUPERNODE */
-        cipheredContent = getCipheredContent();
+        cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         String responseLine = securityManager.decipherToString(cipheredContent);
         LineParser lineParser = new LineParser(responseLine, SP);
         lineParser.validateNext("TRANSMIT_RESULT");
@@ -372,7 +371,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         if(statusCode != 200)
             throw new CommunicationException(new Status(statusCode, statusMsg));
 
-        cipheredContent = getCipheredContent();
+        cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         content = securityManager.decipher(cipheredContent);
 
 
@@ -434,7 +433,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
 
     public void processCipherCommandLine(String line, ActiveRequestManager activeRequestManager) throws Exception {
-        CipheredContent cipheredContent = getCipheredContentNoCommand();
+        CipheredContent cipheredContent = getCipheredContentNoCommand(CipheredContent.CLASS_B);
 
         String strBlock = securityManager.decipherToString(cipheredContent);
         BlockParser blockParser = new BlockParser(strBlock, CLRF, SP);
@@ -523,7 +522,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
 
     protected void transmitRequestPassive(ActiveRequestManager activeRequestManager) throws Exception {
 
-        CipheredContent cipheredContent = getCipheredContent();
+        CipheredContent cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         byte[] content = securityManager.decipher(cipheredContent);
 
         try{

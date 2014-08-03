@@ -1,13 +1,10 @@
 package com.cloupix.fennec.logic.security;
 
 import com.cloupix.fennec.business.CipheredContent;
-import com.cloupix.fennec.business.CipheredContentB;
 import com.cloupix.fennec.business.exceptions.ProtocolException;
 import com.cloupix.fennec.util.R;
 
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
@@ -31,8 +28,6 @@ public abstract class SecurityManager {
             return new SecurityManagerA(securityLevel);
         }else if(securityLevel.getSecurityClass().equals("B")){
             return new SecurityManagerB(securityLevel);
-        }else if(securityLevel.getSecurityClass().equals("C")){
-            return new SecurityManagerC(securityLevel);
         }else{
             throw new ProtocolException(ProtocolException.UNKNOWN_SECURITY_LEVEL, "Unknown security level " + securityLevel);
         }

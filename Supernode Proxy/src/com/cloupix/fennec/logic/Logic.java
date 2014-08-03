@@ -1,11 +1,15 @@
 package com.cloupix.fennec.logic;
 
+import com.cloupix.fennec.business.AnalyticAuthentication;
+import com.cloupix.fennec.dao.Dao;
+import com.cloupix.fennec.logic.security.*;
 import com.cloupix.fennec.util.R;
 
 import java.io.*;
 import java.security.*;
 import java.security.cert.*;
 import java.security.cert.Certificate;
+import java.sql.SQLException;
 
 /**
  * Created by AlonsoUSA on 01/08/14.
@@ -19,21 +23,45 @@ public class Logic {
 
 
 
-    public byte[] validateSha(String sha) {
-        // TODO Validar
-        // TODO devolver el authKey propio de ese sha
+    public byte[] validateSha(String sha) throws UnsupportedEncodingException {
+
+        try {
+            Dao dao = new Dao();
+            dao.open();
+            AnalyticAuthentication authentication = null;
+            authentication = dao.getAuthenticationBySha(sha);
+            dao.close();
+
+            if(authentication == null)
+                return null;
+            else
+                return authentication.getAuthKey();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     public boolean registerDevice(byte[] authKey) {
-        // TODO Guardar en BBDD
+        String sha = null;
         try {
-            String sha = com.cloupix.fennec.logic.security.SecurityManager.SHAsum(authKey);
-            //map.put(sha, authKey);
-        } catch (NoSuchAlgorithmException e) {
+            sha = com.cloupix.fennec.logic.security.SecurityManager.SHAsum(authKey);
+
+            Dao dao = new Dao();
+            dao.open();
+            AnalyticAuthentication authentication = dao.getAuthenticationBySha(sha);
+            if(authentication!=null) {
+                dao.close();
+                return true;
+            }else{
+                dao.insertAuthentication(new AnalyticAuthentication(sha, authKey));
+                dao.commitTransaccion();
+                dao.close();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            return true;
         }
         return false;
     }

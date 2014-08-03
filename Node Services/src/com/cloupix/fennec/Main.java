@@ -1,5 +1,6 @@
 package com.cloupix.fennec;
 
+import com.cloupix.fennec.logic.Logic;
 import com.cloupix.fennec.logic.network.DaemonTCP;
 import com.cloupix.fennec.util.Log;
 import com.cloupix.fennec.util.R;
@@ -34,5 +35,7 @@ public class Main {
 
     private static void loadConfig(){
         R.build(R.TYPE_SERVICES);
+
+        R.getInstance().setAuthKey(new Logic().getAuthKey());
     }
 }

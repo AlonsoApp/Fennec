@@ -1,17 +1,12 @@
 package com.cloupix.fennec.logic.security;
 
 import com.cloupix.fennec.business.CipheredContent;
-import com.cloupix.fennec.business.CipheredContentB;
 import com.cloupix.fennec.util.R;
-import com.sun.deploy.util.ArrayUtil;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
 import java.util.Arrays;
 
 /**
@@ -29,17 +24,17 @@ public class AES {
             CipheredContent cipheredContent = securityManager.cipher("Hola!".getBytes(R.charset));
 
 
-            CipheredContentB cipheredContentB = new CipheredContentB();
-            int msgKeyLength = ((CipheredContentB)cipheredContent).getMsgKeyLenght();
-            int authKeyShaLeng = ((CipheredContentB)cipheredContent).getAuthKeyShaLength();
+            CipheredContent cipheredContentAB = new CipheredContent(CipheredContent.CLASS_B);
+            int msgKeyLength = cipheredContent.getMsgKeyLenght();
+            int authKeyShaLeng = cipheredContent.getAuthKeyShaLength();
 
-            cipheredContentB.setMsgKeyLength(msgKeyLength);
-            cipheredContentB.setAuthKeyShaLength(authKeyShaLeng);
-            cipheredContentB.setFullContent(cipheredContent.getFullContent());
-            cipheredContentB.split();
+            cipheredContentAB.setMsgKeyLength(msgKeyLength);
+            cipheredContentAB.setAuthKeyShaLength(authKeyShaLeng);
+            cipheredContentAB.setFullContent(cipheredContent.getFullContent());
+            cipheredContentAB.split();
 
 
-            byte[] result = securityManager.decipher(cipheredContentB);
+            byte[] result = securityManager.decipher(cipheredContentAB);
             System.out.println(new String(result, R.charset));
 
 

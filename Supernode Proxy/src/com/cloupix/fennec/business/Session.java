@@ -4,6 +4,7 @@ import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksSupernode;
 import com.cloupix.fennec.logic.Logic;
 import com.cloupix.fennec.logic.network.PassiveRequestManager;
 import com.cloupix.fennec.logic.security.*;
+import com.sun.deploy.security.AuthKey;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -22,14 +23,19 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
 
     private Logic logic;
 
-    private HashMap<String, byte[]> map;
-
     private Socket sourceSocket;
     private PassiveRequestManager passiveRequestManager = null;
 
+    //Analytics
+    private AnalyticSession analyticSession;
+
     public Session(Socket sourceSocket) throws IOException {
         this.logic = new Logic();
-
+        this.analyticSession = new AnalyticSession();
+        this.analyticSession.addConnection(sourceSocket.getLocalPort(),
+                new AnalyticConnection(sourceSocket.getInetAddress().getHostAddress(),
+                        AnalyticConnection.TYPE_ACTIVE,
+                        new AnalyticDevice()));
 
         this.sourceSocket = sourceSocket;
         this.passiveRequestManager = new PassiveRequestManager(sourceSocket, this);
@@ -37,9 +43,6 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
 
     @Override
     public void run() {
-
-        // TODO Esto simula la bd borrarlo
-        map = new HashMap<String, byte[]>();
 
         //TODO Con un return aqui es sufuciente para terminar el thread? o hay que hacer Thread.stop()
         if(!isAlive())
@@ -71,23 +74,32 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
 
     @Override
     public byte[] validateSha(String sha) {
-        // TODO Validar
-        // TODO devolver el authKey propio de ese sha
-        return map.get(sha);
+        try {
+            return logic.validateSha(sha);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+        /*
+        if(device == null)
+            return null;
+
+        analyticSession.getConnection(port).setDevice(device);
+        return device.getAnalyticAuthentication().getAuthKey();
+        */
     }
 
     @Override
-    public boolean registerDevice(byte[] authKey) {
-        // TODO Guardar en BBDD
-        try {
-            String sha = com.cloupix.fennec.logic.security.SecurityManager.SHAsum(authKey);
-            map.put(sha, authKey);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public boolean registerDevice(int port, byte[] authKey) {
+        return logic.registerDevice(authKey);
+        /*
+        AnalyticDevice device = logic.registerDevice(authKey);
+        if(device == null)
+            return true;
+
+        analyticSession.getConnection(port).setDevice(device);
         return false;
+        */
     }
 
     @Override
@@ -103,5 +115,23 @@ public class Session implements Runnable, ProtocolV1CallbacksSupernode{
     @Override
     public PublicKey verifyCert(Certificate cert) {
         return logic.verifyNodeCert(cert);
+    }
+
+
+
+
+
+    @Override
+    public void authenticateAnalytic(int port, byte[] authKey, String publicKeyHex, boolean signed) {
+        /*
+        if(publicKeyHex!=null)
+            analyticSession.getConnection(port).setDeviceCertificate(new AnalyticDeviceCertificate(publicKeyHex));
+        */
+
+    }
+
+    @Override
+    public void negotiateSecurityLevelAnalytic(int port, SecurityLevel securityLevel) {
+
     }
 }

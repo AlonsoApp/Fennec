@@ -24,39 +24,19 @@ public abstract class R {
 
     protected String keystorePath;
     protected String rootcaPath;
+    protected String databasePath;
+    protected String authKeyPath;
+
     private KeyPair keyPair;
     private Certificate signedCertificate;
-
-    public int getNodeType() {
-        return nodeType;
-    }
-
-    public void setNodeType(int nodeType) {
-        this.nodeType = nodeType;
-    }
 
     protected int nodeType;
 
     public static final String charset = "utf-8";
 
     // TODO Almacenar esto bien
-    private String authKey;
+    private byte[] authKey;
 
-
-    /*
-    *public static int NODE_SERVICES_PORT = 1171;//Antes era 1172
-
-    public static final int PORT_INTERNAL = 1171;
-    public static final int PORT_EXTERNAL = 1172;//Cambiar a 1170
-    *public static final int PORT_SUPERNODE = 1170;
-
-    public static final int PORT_INTERNAL_FAKE = 1174;
-    public static final int PORT_EXTERNAL_FAKE = 1173;
-    */
-
-
-    public static final int CODE_OK = 200;
-    public static final int CODE_CONNECTION_REFUSED = 401;
 
     public static R getInstance(){
         return instance;
@@ -68,6 +48,14 @@ public abstract class R {
             case TYPE_SERVICES: instance = new ServicesR(); break;
             case TYPE_SUPERNODE: instance = new SupernodeR(); break;
         }
+    }
+
+    public int getNodeType() {
+        return nodeType;
+    }
+
+    public void setNodeType(int nodeType) {
+        this.nodeType = nodeType;
     }
 
     public String getLocalHostIp() {
@@ -110,11 +98,11 @@ public abstract class R {
         this.supernodeIp = supernodeIp;
     }
 
-    public String getAuthKey() {
+    public byte[] getAuthKey() {
         return authKey;
     }
 
-    public void setAuthKey(String authKey) {
+    public void setAuthKey(byte[] authKey) {
         this.authKey = authKey;
     }
 
@@ -134,6 +122,10 @@ public abstract class R {
         this.rootcaPath = rootcaPath;
     }
 
+    public String getDatabasePath() {
+        return databasePath;
+    }
+
     public void setKeyPair(KeyPair keyPair) {
         this.keyPair = keyPair;
     }
@@ -148,5 +140,13 @@ public abstract class R {
 
     public Certificate getSignedCertificate() {
         return signedCertificate;
+    }
+
+    public String getAuthKeyPath() {
+        return authKeyPath;
+    }
+
+    public void setAuthKeyPath(String authKeyPath) {
+        this.authKeyPath = authKeyPath;
     }
 }

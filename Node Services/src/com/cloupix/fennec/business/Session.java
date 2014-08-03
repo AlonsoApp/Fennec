@@ -3,6 +3,7 @@ package com.cloupix.fennec.business;
 import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksServices;
 import com.cloupix.fennec.logic.Logic;
 import com.cloupix.fennec.logic.network.PassiveRequestManager;
+import com.cloupix.fennec.util.R;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -49,27 +50,28 @@ public class Session implements Runnable, ProtocolV1CallbacksServices{
     }
 
     public boolean isAlive() {
-        //TODO Currarse más este método
         return !sourceSocket.isClosed();
     }
 
     @Override
     public void storeAuthKey(byte[] authKey) {
-
-        //TODO Guardar la AuthKey
-        this.authkey = authKey;
+        R.getInstance().setAuthKey(authKey);
+        try {
+            logic.storeAuthKey(authKey);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public byte[] getAuthKey() {
-        //TODO Dar una AuthKey
-        return authkey;
-    }
-
-    @Override
-    public String getAuthKeySha() {
-        //TODO De momento no se usa, si se considera necesario implementarlo, si no borrarlo
-        return null;
+        if(R.getInstance().getAuthKey()!=null)
+            return R.getInstance().getAuthKey();
+        else {
+            byte[] authKey = logic.getAuthKey();
+            R.getInstance().setAuthKey(authKey);
+            return authKey;
+        }
     }
 
     @Override

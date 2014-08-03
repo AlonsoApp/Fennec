@@ -2,23 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff580f49-2c11-4522-a496-24a0044fb4ee" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticAuthentication.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticConnection.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticDevice.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticDeviceCertificate.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticSession.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticTransmission.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentA.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentC.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerC.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentB.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/blockParser.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/BlockParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AES.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AES.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/ActiveRequestManager.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/ActiveRequestManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocol.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocol.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/ContractFennecDB.java" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/ContractFennecDB.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/Logic.java" afterPath="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/Logic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Node Library/src/es/node/app/Main.java" afterPath="$PROJECT_DIR$/Node Library/src/es/node/app/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/Logic.java" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/Logic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/Main.java" afterPath="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/Main.java" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksServices.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksServices.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksSupernode.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksSupernode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/R.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityLevel.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityLevel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManager.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerA.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerA.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerB.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerC.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerC.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/ServicesR.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/ServicesR.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java" afterPath="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Session.java" afterPath="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Session.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/SupernodeR.java" afterPath="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/SupernodeR.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -79,8 +91,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules converted="true" />
     <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -88,31 +100,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FennecProtocolV1Supernode.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6480">
-              <caret line="100" column="47" selection-start-line="100" selection-start-column="47" selection-end-line="100" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityLevel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityLevel.java">
+      <file leaf-file-name="Logic.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/Logic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-              <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1710">
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dao.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/Dao.java">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20900321" vertical-offset="0" max-vertical-offset="1260">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="915">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,80 +133,64 @@
       <file leaf-file-name="Session.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="284" max-vertical-offset="1635">
-              <caret line="41" column="27" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="535" max-vertical-offset="1695">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1450#1451#0" expanded="true" />
+                <element signature="e#1497#1498#0" expanded="true" />
+                <element signature="e#2653#2654#0" expanded="true" />
+                <element signature="e#2698#2699#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="777" max-vertical-offset="1320">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CipheredContentA.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentA.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#292#293#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AsymmetricCipher.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AsymmetricCipher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="299" max-vertical-offset="1050">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SecurityManagerA.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerA.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="657" max-vertical-offset="1200">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-              <folding>
-                <element signature="e#1416#1417#0" expanded="true" />
-                <element signature="e#1464#1465#0" expanded="true" />
-                <element signature="e#1558#1559#0" expanded="true" />
-                <element signature="e#1617#1618#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CipheredContent.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="134" max-vertical-offset="795">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#376#377#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FennecProtocolV1Services.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="FennecProtocolV1Services.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1911" max-vertical-offset="8010">
-              <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.620438" vertical-offset="2850" max-vertical-offset="7995">
+              <caret line="226" column="41" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FennecProtocolV1Supernode.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="6765">
+              <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dao.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/Dao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1650">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Logic.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/Logic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2175">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Session.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Session.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="805" max-vertical-offset="1890">
+              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -218,63 +214,63 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1Callbacks.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/ContentParser.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerASupernode.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/Status.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/authentication/AuthenticationManager.java" />
-        <option value="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/network/PassiveRequestManager.java" />
-        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/network/PassiveRequestManager.java" />
-        <option value="$PROJECT_DIR$/Node Library/src/com/cloupix/fennec/logic/network/PassiveRequestManager.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksLibrary.java" />
-        <option value="$PROJECT_DIR$/Node Library/src/com/cloupix/fennec/business/ServerSession.java" />
-        <option value="$PROJECT_DIR$/Node Library/src/com/cloupix/fennec/business/Session.java" />
-        <option value="$PROJECT_DIR$/Node Library/src/es/node/app/MainServer.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AsymmetricCipherTest.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AsymmetricCipher.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocol.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/DHKeyAgreementAlice.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerC.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerB.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Library.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManager.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/Profile.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentB.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentC.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContent.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/LineParser.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/BlockParser.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1.java" />
         <option value="$PROJECT_DIR$/Node Library/src/es/node/app/Main.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AES.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/DES.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentA.java" />
         <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/dao.java" />
-        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/ContractFennecDB.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/LibraryR.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/SupernodeR.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/ServicesR.java" />
-        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/Main.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/R.java" />
-        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/Logic.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksServices.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksSupernode.java" />
-        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Session.java" />
-        <option value="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/Logic.java" />
-        <option value="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/ActiveRequestManager.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerA.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java" />
-        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java" />
         <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityLevel.java" />
         <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/Dao2.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManager.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerA.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContent.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerB.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AES.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Device.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Authentication.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticCommunicationType.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticSecurity.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticTransmission.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticProtocolVersion.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticDevice.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticSession.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticConnection.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksSupernode.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticDeviceCertificate.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/Main.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/SupernodeR.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Session.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticAuthentication.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/Logic.java" />
         <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/Dao.java" />
+        <option value="$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/ContractFennecDB.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/R.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/ServicesR.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksServices.java" />
+        <option value="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/Main.java" />
+        <option value="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java" />
+        <option value="$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/Logic.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java" />
+        <option value="$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -347,7 +343,7 @@
       <showMembers />
       <showModules />
       <showLibraryContents />
-      <hideEmptyPackages ProjectPane="false" />
+      <hideEmptyPackages ProjectPane="true" />
       <abbreviatePackageNames />
       <autoscrollToSource />
       <autoscrollFromSource />
@@ -355,7 +351,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -406,14 +401,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -436,11 +423,29 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
+              <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
+              <option name="myItemId" value="logic" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fennec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fennec" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Supernode Proxy" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -470,14 +475,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -536,14 +533,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -563,14 +552,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -597,14 +578,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -666,14 +639,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -700,14 +665,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -731,14 +688,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -772,14 +721,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -810,14 +751,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -844,14 +777,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloupix" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fennec" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -866,6 +791,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -957,6 +883,19 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -982,19 +921,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1233,7 +1159,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="Supernode Proxy" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -1279,11 +1211,15 @@
       <created>1406799154960</created>
       <updated>1406799154960</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Certificate exange implemented&#10;Security Class A implemented">
+      <created>1406982524607</created>
+      <updated>1406982524607</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1291,20 +1227,20 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37804878" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32215446" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32102272" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39634147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39488637" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3375262" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262195" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3252841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2513312" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42987806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="59" y="372" width="1638" height="314" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27544427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42897728" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="59" y="372" width="1638" height="314" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1327,13 +1263,13 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21855922" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809225" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="59" y="372" width="1638" height="314" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1358,70 +1294,101 @@
     <MESSAGE value="Fennec communication system with buffer errors" />
     <MESSAGE value="MTProtocol implemented&#10;Buffer errors fixed" />
     <MESSAGE value="Certificate exange implemented&#10;Security Class A implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Certificate exange implemented&#10;Security Class A implemented" />
+    <MESSAGE value="Dao implemented (only for auth)&#10;AuthKey file saving implemented Nose Services" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dao implemented (only for auth)&#10;AuthKey file saving implemented Nose Services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java</url>
-          <line>43</line>
+          <line>44</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java</url>
-          <line>294</line>
-          <properties />
-          <option name="timeStamp" value="174" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
-          <line>394</line>
+          <line>411</line>
           <properties />
           <option name="timeStamp" value="175" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
-          <line>364</line>
+          <line>381</line>
           <properties />
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java</url>
-          <line>436</line>
+          <line>434</line>
           <properties />
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
-          <line>297</line>
+          <line>314</line>
           <properties />
           <option name="timeStamp" value="181" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
-          <line>280</line>
+          <line>297</line>
           <properties />
           <option name="timeStamp" value="185" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java</url>
-          <line>512</line>
+          <line>510</line>
           <properties />
           <option name="timeStamp" value="186" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
-          <line>410</line>
+          <line>427</line>
           <properties />
           <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
+          <line>383</line>
+          <properties />
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/Dao.java</url>
+          <line>35</line>
+          <properties />
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java</url>
+          <line>153</line>
+          <properties />
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java</url>
+          <line>216</line>
+          <properties />
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
+          <line>150</line>
+          <properties />
+          <option name="timeStamp" value="223" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java</url>
+          <line>153</line>
+          <properties />
+          <option name="timeStamp" value="224" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="211" />
+      <option name="time" value="225" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1429,34 +1396,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/exceptions/AuthenticationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Node Library/src/com/cloupix/fennec/logic/network/PassiveRequestManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="945">
-          <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Node Library/src/com/cloupix/fennec/business/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="645">
-          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/DHKeyAgreementAlice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2247" max-vertical-offset="3150">
-          <caret line="207" column="45" selection-start-line="207" selection-start-column="45" selection-end-line="207" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolCallbacks.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09944751" vertical-offset="0" max-vertical-offset="905">
@@ -1483,18 +1422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.114503816" vertical-offset="0" max-vertical-offset="524">
           <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="1095">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1510,7 +1437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.015690377" vertical-offset="15" max-vertical-offset="1260">
           <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1536,13 +1462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/DHKeyAgreementBob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0470711" vertical-offset="469" max-vertical-offset="1635">
@@ -1561,44 +1480,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AES.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="1425">
-          <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50209206" vertical-offset="0" max-vertical-offset="956">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="451" max-vertical-offset="975">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksLibrary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18828452" vertical-offset="0" max-vertical-offset="956">
           <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/LineParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7266881" vertical-offset="177" max-vertical-offset="1110">
-          <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1614,7 +1499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="933">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1626,107 +1510,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/ServicesR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30546623" vertical-offset="0" max-vertical-offset="933">
-          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1725">
-          <caret line="144" column="69" selection-start-line="144" selection-start-column="69" selection-end-line="144" selection-end-column="69" />
-          <folding>
-            <element signature="e#3517#3518#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/Logic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="649" max-vertical-offset="1950">
-          <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2709#2710#0" expanded="true" />
-            <element signature="e#2765#2766#0" expanded="true" />
-            <element signature="e#2923#2924#0" expanded="true" />
-            <element signature="e#2980#2981#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/SupernodeR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25104603" vertical-offset="0" max-vertical-offset="956">
-          <caret line="16" column="66" selection-start-line="16" selection-start-column="66" selection-end-line="17" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/ContractFennecDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9497907" vertical-offset="0" max-vertical-offset="3225">
-          <caret line="188" column="47" selection-start-line="188" selection-start-column="47" selection-end-line="188" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksServices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29811716" vertical-offset="0" max-vertical-offset="956">
-          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksSupernode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15690376" vertical-offset="0" max-vertical-offset="956">
-          <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Node Services/data/root_ca.pem">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="956">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/Logic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1455">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1455">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/ActiveRequestManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="274" max-vertical-offset="1230">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1734,7 +1521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1746,87 +1532,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="2985">
-          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="777" max-vertical-offset="1320">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContentA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#292#293#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="134" max-vertical-offset="795">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#376#377#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AsymmetricCipher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="299" max-vertical-offset="1050">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="657" max-vertical-offset="1200">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding>
-            <element signature="e#1416#1417#0" expanded="true" />
-            <element signature="e#1464#1465#0" expanded="true" />
-            <element signature="e#1558#1559#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="284" max-vertical-offset="1635">
-          <caret line="41" column="27" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1911" max-vertical-offset="8010">
-          <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6480">
-          <caret line="100" column="47" selection-start-line="100" selection-start-column="47" selection-end-line="100" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1838,10 +1547,351 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="1575">
+          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/CipheredContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1920">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#584#585#0" expanded="true" />
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#830#831#0" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+            <element signature="e#927#928#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
+            <element signature="e#1914#1915#0" expanded="true" />
+            <element signature="e#1943#1944#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManagerB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="945">
+          <caret line="43" column="85" selection-start-line="43" selection-start-column="85" selection-end-line="43" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/AES.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="81" max-vertical-offset="1425">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3713389" vertical-offset="905" max-vertical-offset="3270">
+          <caret line="92" column="45" selection-start-line="92" selection-start-column="45" selection-end-line="92" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticTransmission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+          <folding>
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#796#797#0" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#989#990#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1196#1197#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="277" max-vertical-offset="990">
+          <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+          <folding>
+            <element signature="e#321#322#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#425#426#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
+            <element signature="e#770#771#0" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
+            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#907#908#0" expanded="true" />
+            <element signature="e#967#968#0" expanded="true" />
+            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+            <element signature="e#1261#1262#0" expanded="true" />
+            <element signature="e#1302#1303#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticDevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1845">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#1072#1073#0" expanded="true" />
+            <element signature="e#1107#1108#0" expanded="true" />
+            <element signature="e#1161#1162#0" expanded="true" />
+            <element signature="e#1209#1210#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1275#1276#0" expanded="true" />
+            <element signature="e#1323#1324#0" expanded="true" />
+            <element signature="e#1363#1364#0" expanded="true" />
+            <element signature="e#1403#1404#0" expanded="true" />
+            <element signature="e#1439#1440#0" expanded="true" />
+            <element signature="e#1497#1498#0" expanded="true" />
+            <element signature="e#1547#1548#0" expanded="true" />
+            <element signature="e#1586#1587#0" expanded="true" />
+            <element signature="e#1624#1625#0" expanded="true" />
+            <element signature="e#1683#1684#0" expanded="true" />
+            <element signature="e#1737#1738#0" expanded="true" />
+            <element signature="e#1778#1779#0" expanded="true" />
+            <element signature="e#1807#1808#0" expanded="true" />
+            <element signature="e#1859#1860#0" expanded="true" />
+            <element signature="e#1895#1896#0" expanded="true" />
+            <element signature="e#1958#1959#0" expanded="true" />
+            <element signature="e#1998#1999#0" expanded="true" />
+            <element signature="e#2179#2180#0" expanded="true" />
+            <element signature="e#2216#2217#0" expanded="true" />
+            <element signature="e#2273#2274#0" expanded="true" />
+            <element signature="e#2325#2326#0" expanded="true" />
+            <element signature="e#2372#2373#0" expanded="true" />
+            <element signature="e#2408#2409#0" expanded="true" />
+            <element signature="e#2473#2474#0" expanded="true" />
+            <element signature="e#2523#2524#0" expanded="true" />
+            <element signature="e#2562#2563#0" expanded="true" />
+            <element signature="e#2600#2601#0" expanded="true" />
+            <element signature="e#2659#2660#0" expanded="true" />
+            <element signature="e#2713#2714#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/security/SecurityManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="1290">
+          <caret line="49" column="38" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksSupernode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="15" column="18" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticDeviceCertificate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
+          <folding>
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/src.zip!/java/sql/Statement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33246753" vertical-offset="4702" max-vertical-offset="15690">
+          <caret line="345" column="12" selection-start-line="345" selection-start-column="12" selection-end-line="345" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/ContractFennecDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3159609" vertical-offset="2041" max-vertical-offset="3720">
+          <caret line="149" column="67" selection-start-line="149" selection-start-column="67" selection-end-line="149" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/SupernodeR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43644717" vertical-offset="0" max-vertical-offset="653">
+          <caret line="19" column="61" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/AnalyticAuthentication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22189349" vertical-offset="0" max-vertical-offset="676">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/LineParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16892911" vertical-offset="428" max-vertical-offset="1110">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/R.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="972" max-vertical-offset="1635">
+          <caret line="144" column="36" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
+          <folding>
+            <element signature="e#3357#3358#0" expanded="true" />
+            <element signature="e#3411#3412#0" expanded="true" />
+            <element signature="e#3457#3458#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/util/ServicesR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/business/interfaces/ProtocolV1CallbacksServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Node Services/data/authkey.fnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="351">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/logic/Logic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1710">
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="915">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Node Services/src/com/cloupix/fennec/business/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="535" max-vertical-offset="1695">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
+            <element signature="e#1497#1498#0" expanded="true" />
+            <element signature="e#2653#2654#0" expanded="true" />
+            <element signature="e#2698#2699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/dao/Dao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20900321" vertical-offset="0" max-vertical-offset="1260">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1650">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/logic/Logic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2175">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Supernode Proxy/src/com/cloupix/fennec/business/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="805" max-vertical-offset="1890">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/ActiveRequestManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3314917" vertical-offset="465" max-vertical-offset="1230">
+          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Supernode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="6765">
+          <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fennec Lib/src/com/cloupix/fennec/logic/network/FennecProtocolV1Services.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.620438" vertical-offset="2850" max-vertical-offset="7995">
+          <caret line="226" column="41" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
           <folding />
         </state>
       </provider>

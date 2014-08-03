@@ -2,10 +2,9 @@ package com.cloupix.fennec.logic;
 
 import com.cloupix.fennec.util.R;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
@@ -21,7 +20,24 @@ public class Logic {
     private static final String KEYSTORE_PASSWORD = "demopassword";
     private static final String CERT_PASSWORD = "demopassword";
 
+    public void storeAuthKey(byte[] authKey) throws IOException {
+        FileOutputStream fos = new FileOutputStream(R.getInstance().getAuthKeyPath());
+        fos.write(authKey);
+        fos.close();
+    }
 
+    public byte[] getAuthKey(){
+        File db = new File(R.getInstance().getAuthKeyPath());
+        if(!db.exists())
+            return null;
+
+        try {
+            return Files.readAllBytes(Paths.get(R.getInstance().getAuthKeyPath()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     // KEYSTORE STUFF
 

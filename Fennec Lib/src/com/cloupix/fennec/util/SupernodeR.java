@@ -6,6 +6,7 @@ package com.cloupix.fennec.util;
  */
 public class SupernodeR extends R{
 
+
     public SupernodeR(){
         super();
         this.nodeType = TYPE_SUPERNODE;
@@ -16,5 +17,6 @@ public class SupernodeR extends R{
 
         this.keystorePath = "./Supernode Proxy/data/keystore.jks";
         this.rootcaPath = "./Supernode Proxy/data/root_ca.pem";
+        this.databasePath = "./Supernode Proxy/data/supernode.db";
     }
 }

@@ -5,7 +5,6 @@ import com.cloupix.fennec.business.exceptions.ProtocolException;
 import com.cloupix.fennec.business.interfaces.ProtocolCallbacks;
 import com.cloupix.fennec.logic.security.SecurityManagerA;
 import com.cloupix.fennec.logic.security.SecurityManagerB;
-import com.cloupix.fennec.logic.security.SecurityManagerC;
 import com.cloupix.fennec.util.R;
 
 import java.io.*;
@@ -52,28 +51,27 @@ public abstract class FennecProtocolV1 extends FennecProtocol {
     protected void sendCipheredContent(CipheredContent cipheredContent) throws IOException {
         writeBytes(LineParser.encodeLine(new String[]{"CIPHERED_MESSAGE"}, SP, CLRF));
 
-        if(cipheredContent instanceof CipheredContentA)
-            sendCipheredContentA((CipheredContentA) cipheredContent);
-        else if(cipheredContent instanceof CipheredContentB)
-            sendCipheredContentB((CipheredContentB) cipheredContent);
-        else if(cipheredContent instanceof CipheredContentC)
-            sendCipheredContentC((CipheredContentC) cipheredContent);
+        switch (cipheredContent.getCipherClass()){
+            case CipheredContent.CLASS_A:
+                sendCipheredContentA(cipheredContent);
+                break;
+            case CipheredContent.CLASS_B:
+                sendCipheredContentB(cipheredContent);
+                break;
+        }
 
     }
 
-    protected void sendCipheredContentA(CipheredContentA cipheredContentA) throws IOException {
-        sendContentNoCommand(cipheredContentA.getFullContent());
+    protected void sendCipheredContentA(CipheredContent cipheredContent) throws IOException {
+        sendContentNoCommand(cipheredContent.getFullContent());
     }
 
-    protected void sendCipheredContentB(CipheredContentB cipheredContentB) throws IOException {
-        sendHeader("Content-Length:", cipheredContentB.getFullContent().length + "");
-        sendHeader("MsgKey-Length:", cipheredContentB.getMsgKeyLenght() + "");
-        sendHeader("AuthKeySha-Length:", cipheredContentB.getAuthKeyShaLength() + "");
-        sendContent(cipheredContentB.getFullContent());
+    protected void sendCipheredContentB(CipheredContent cipheredContent) throws IOException {
+        sendHeader("Content-Length:", cipheredContent.getFullContent().length + "");
+        sendHeader("MsgKey-Length:", cipheredContent.getMsgKeyLenght() + "");
+        sendHeader("AuthKeySha-Length:", cipheredContent.getAuthKeyShaLength() + "");
+        sendContent(cipheredContent.getFullContent());
 
-    }
-    protected void sendCipheredContentC(CipheredContentC cipheredContentC) throws IOException {
-        sendContentNoCommand(cipheredContentC.getFullContent());
     }
 
     protected void sendContentNoCommand(byte[] content) throws IOException {
@@ -91,10 +89,11 @@ public abstract class FennecProtocolV1 extends FennecProtocol {
         dos.flush();
 
         System.out.print("Sent " + socket.getPort() + ": ");
-        printBytes(content);
+        //printBytes(content);
+        System.out.println(new String(content, R.charset));
     }
 
-    protected CipheredContent getCipheredContent() throws IOException, ProtocolException {
+    protected CipheredContent getCipheredContent(int cipherClass) throws IOException, ProtocolException {
 
 
         String line = br.readLine();
@@ -102,30 +101,48 @@ public abstract class FennecProtocolV1 extends FennecProtocol {
         lineParser.validateNext("CIPHERED_MESSAGE");
 
 
-        return getCipheredContentNoCommand();
+        return getCipheredContentNoCommand(cipherClass);
     }
 
-    protected CipheredContent getCipheredContentNoCommand() throws IOException, ProtocolException {
+    protected CipheredContent getCipheredContentNoCommand(int cipherClass) throws IOException, ProtocolException {
 
-        CipheredContent cipheredContent = new CipheredContent();
+        CipheredContent cipheredContent = new CipheredContent(cipherClass);
         int length = getHeaderInt("Content-Length:");
+        switch (cipherClass){
+            case CipheredContent.CLASS_A:
+                cipheredContent.setFullContent(getContent(length));
+                break;
+            case CipheredContent.CLASS_B:
+                int msgKeyLength = getHeaderInt("MsgKey-Length:");
+                int authKeyShaLeng = getHeaderInt("AuthKeySha-Length:");
+
+                cipheredContent.setMsgKeyLength(msgKeyLength);
+                cipheredContent.setAuthKeyShaLength(authKeyShaLeng);
+                cipheredContent.setFullContent(getContent(length));
+                cipheredContent.split();
+                break;
+
+        }
+        return cipheredContent;
+
+
+
+        /*
         if(securityManager instanceof SecurityManagerA){
-            cipheredContent = new CipheredContentA();
+            cipheredContent = new CipheredContent();
             cipheredContent.setFullContent(getContent(length));
         }else if(securityManager instanceof SecurityManagerB){
-            cipheredContent = new CipheredContentB();
+            cipheredContent = new CipheredContent();
             int msgKeyLength = getHeaderInt("MsgKey-Length:");
             int authKeyShaLeng = getHeaderInt("AuthKeySha-Length:");
 
-            ((CipheredContentB) cipheredContent).setMsgKeyLength(msgKeyLength);
-            ((CipheredContentB) cipheredContent).setAuthKeyShaLength(authKeyShaLeng);
+            cipheredContent.setMsgKeyLength(msgKeyLength);
+            cipheredContent.setAuthKeyShaLength(authKeyShaLeng);
             cipheredContent.setFullContent(getContent(length));
-            ((CipheredContentB) cipheredContent).split();
-        }else if(securityManager instanceof SecurityManagerC){
-            cipheredContent = new CipheredContentB();
-            cipheredContent.setFullContent(getContent(length));
+            cipheredContent.split();
         }
         return cipheredContent;
+        */
     }
 
     protected byte[] getContentNoCommand() throws IOException, ProtocolException {
@@ -177,7 +194,8 @@ public abstract class FennecProtocolV1 extends FennecProtocol {
                 buffer[i] = b;
         }
         System.out.print("Recibed " + socket.getPort() + ": ");
-        printBytes(buffer);
+        System.out.println(new String(buffer, R.charset));
+        //printBytes(buffer);
         return buffer;
     }
 

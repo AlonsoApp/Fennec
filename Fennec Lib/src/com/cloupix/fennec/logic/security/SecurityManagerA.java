@@ -1,7 +1,6 @@
 package com.cloupix.fennec.logic.security;
 
 import com.cloupix.fennec.business.CipheredContent;
-import com.cloupix.fennec.business.CipheredContentA;
 import com.cloupix.fennec.util.R;
 
 import java.security.*;
@@ -12,13 +11,13 @@ import java.security.spec.X509EncodedKeySpec;
  * Created by AlonsoUSA on 21/07/14.
  *
  */
-public class SecurityManagerA extends SecurityManager {
+public class SecurityManagerA extends SecurityManagerB {
 
     private PublicKey pubKey;
     private PrivateKey privKey;
 
     public SecurityManagerA(SecurityLevel securityLevel){
-        this.securityLevel = securityLevel;
+        super(securityLevel);
     }
 
 
@@ -46,6 +45,7 @@ public class SecurityManagerA extends SecurityManager {
         this.privKey = KeyFactory.getInstance("RSA").generatePrivate(new X509EncodedKeySpec(encodedPrivKey));
     }
 
+    /*
     @Override
     public CipheredContent cipher(byte[] content) throws Exception {
         return cipherWithPublic(content);
@@ -56,6 +56,7 @@ public class SecurityManagerA extends SecurityManager {
         return decipherWithPrivate(cipheredContent);
     }
 
+
     @Override
     public SecurityLevel getSecurityLevel() {
         return securityLevel;
@@ -65,14 +66,14 @@ public class SecurityManagerA extends SecurityManager {
     public void setSecurityLevel(SecurityLevel securityLevel) {
         this.securityLevel = securityLevel;
     }
+    */
 
-
-    public CipheredContentA cipherWithPublic(byte[] content) throws Exception {
-        return new CipheredContentA(AsymmetricCipher.encrypt(content, pubKey, getXform()));
+    public CipheredContent cipherWithPublic(byte[] content) throws Exception {
+        return new CipheredContent(AsymmetricCipher.encrypt(content, pubKey, getXform()));
     }
 
-    public CipheredContentA cipherWithPrivate(byte[] content) throws Exception {
-        return new CipheredContentA(AsymmetricCipher.encrypt(content, privKey, getXform()));
+    public CipheredContent cipherWithPrivate(byte[] content) throws Exception {
+        return new CipheredContent(AsymmetricCipher.encrypt(content, privKey, getXform()));
     }
 
     public byte[] decipherWithPublic(CipheredContent cipheredContent) throws Exception {
@@ -90,5 +91,9 @@ public class SecurityManagerA extends SecurityManager {
 
     public String decipherWithPublicToString(CipheredContent cipheredContent) throws Exception {
         return new String(decipherWithPublic(cipheredContent), R.charset);
+    }
+
+    public String decipherWithPrivateToString(CipheredContent cipheredContent) throws Exception {
+        return new String(decipherWithPrivate(cipheredContent), R.charset);
     }
 }

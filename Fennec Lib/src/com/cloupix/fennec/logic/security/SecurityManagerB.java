@@ -1,7 +1,6 @@
 package com.cloupix.fennec.logic.security;
 
 import com.cloupix.fennec.business.CipheredContent;
-import com.cloupix.fennec.business.CipheredContentB;
 import com.cloupix.fennec.util.R;
 
 import java.io.UnsupportedEncodingException;
@@ -42,24 +41,24 @@ public class SecurityManagerB extends SecurityManager {
         result = concat(msgKey.getBytes(R.charset), result);
         result = concat(authKeySha.getBytes(R.charset), result);
 
-        CipheredContentB cipheredContentB = new CipheredContentB();
-        cipheredContentB.setAuthKeyShaLength(authKeySha.getBytes(R.charset).length);
-        cipheredContentB.setMsgKeyLength(msgKey.getBytes(R.charset).length);
-        cipheredContentB.setFullContent(result);
+        CipheredContent cipheredContent = new CipheredContent(CipheredContent.CLASS_B);
+        cipheredContent.setAuthKeyShaLength(authKeySha.getBytes(R.charset).length);
+        cipheredContent.setMsgKeyLength(msgKey.getBytes(R.charset).length);
+        cipheredContent.setFullContent(result);
 
-        return cipheredContentB;
+        return cipheredContent;
     }
 
     public byte[] decipher(CipheredContent cipheredContent) throws GeneralSecurityException, UnsupportedEncodingException {
-        CipheredContentB cipheredContentB = (CipheredContentB) cipheredContent;
-        if(!cipheredContentB.isSplited())
-            cipheredContentB.split();
+        CipheredContent cipheredContentAB = (CipheredContent) cipheredContent;
+        if(!cipheredContentAB.isSplited())
+            cipheredContentAB.split();
 
-        String msgKey = cipheredContentB.getMsgKey();
+        String msgKey = cipheredContentAB.getMsgKey();
 
         String aesKey = getAesKey(msgKey);
 
-        return AES.decipher(aesKey, cipheredContentB.getContent());
+        return AES.decipher(aesKey, cipheredContentAB.getContent());
     }
 
 

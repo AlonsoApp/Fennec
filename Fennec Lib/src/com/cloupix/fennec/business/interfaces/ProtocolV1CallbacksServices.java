@@ -19,7 +19,6 @@ public interface ProtocolV1CallbacksServices extends ProtocolV1Callbacks {
 
     byte[] getAuthKey();
 
-    String getAuthKeySha();
 
     Profile getProfile();
 

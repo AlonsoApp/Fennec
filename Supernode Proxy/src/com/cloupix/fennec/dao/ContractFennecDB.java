@@ -26,15 +26,16 @@ public class ContractFennecDB {
         public static final String TABLE_NAME = "device_certificate";
         public static final String COLUMN_NAME_DEVICE_CERTIFICATE_ID = "device_certificate_id";
         public static final String COLUMN_NAME_PUBLIC_KEY = "public_key";
+        public static final String COLUMN_NAME_SIGNED = "signed";
         public static final String COLUMN_NAME_CREATION_TIMESTAMP = "creation_timestamp";
         public static final String COLUMN_NAME_DEVICE_ID = "device_id";
 
     }
 
-    public static abstract class CommunicationType {
+    public static abstract class ConnectionType {
 
-        public static final String TABLE_NAME = "communication_type";
-        public static final String COLUMN_NAME_COMMUNICATION_TYPE_ID = "communication_type_id";
+        public static final String TABLE_NAME = "connection_type";
+        public static final String COLUMN_NAME_COMMUNICATION_TYPE_ID = "connection_type_id";
         public static final String COLUMN_NAME_NAME = "name";
     }
 
@@ -81,10 +82,25 @@ public class ContractFennecDB {
 
         public static final String TABLE_NAME = "transmission";
         public static final String COLUMN_NAME_TRANSMISSION_ID = "transmission_id";
+        public static final String COLUMN_NAME_AUTH_KEY_SHA = "auth_key_sha";
         public static final String COLUMN_NAME_CONTENT_LENGTH = "content_length";
         public static final String COLUMN_NAME_TIMESTAMP = "timestamp";
         public static final String COLUMN_NAME_CONNECTION_ID = "connection_id";
         public static final String COLUMN_NAME_COMMUNICATION_TYPE_ID = "communication_type_id";
+    }
+
+    public static abstract class ProtocolVersion {
+
+        public static final String TABLE_NAME = "protocol_version";
+        public static final String COLUMN_NAME_PROTOCOL_VERSION_ID = "protocol_version_id";
+        public static final String COLUMN_NAME_NAME = "name";
+    }
+
+    public static abstract class TransmissionType {
+
+        public static final String TABLE_NAME = "transmission_type";
+        public static final String COLUMN_NAME_TRANSMISSION_TYPE_ID = "transmission_type_id";
+        public static final String COLUMN_NAME_NAME = "name";
     }
 
     //</editor-fold>
@@ -94,6 +110,7 @@ public class ContractFennecDB {
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String REAL_TYPE = " REAL";
+    private static final String BLOB_TYPE = " BLOB";
     private static final String INTEGER_TYPE = " INTEGER";
 
     private static final String COMMA_SEP = ", ";
@@ -111,8 +128,8 @@ public class ContractFennecDB {
     public static final String SQL_CREATE_TABLE_DEVICE_CERTIFICATE =
             "CREATE TABLE " + DeviceCertificate.TABLE_NAME + " (" +
                     DeviceCertificate.COLUMN_NAME_DEVICE_CERTIFICATE_ID + INTEGER_TYPE + " PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
-                    // TODO Mirar el tipo de datos para publicKey
                     DeviceCertificate.COLUMN_NAME_PUBLIC_KEY + TEXT_TYPE + COMMA_SEP +
+                    DeviceCertificate.COLUMN_NAME_SIGNED + INTEGER_TYPE + COMMA_SEP +
                     DeviceCertificate.COLUMN_NAME_CREATION_TIMESTAMP + INTEGER_TYPE + COMMA_SEP +
                     DeviceCertificate.COLUMN_NAME_DEVICE_ID + INTEGER_TYPE + COMMA_SEP +
 
@@ -120,17 +137,17 @@ public class ContractFennecDB {
                     " REFERENCES "+ Device.TABLE_NAME+" ("+ Device.COLUMN_NAME_DEVICE_ID+")" +
                     " );";
 
-    public static final String SQL_CREATE_TABLE_COMMUNICATION_TYPE =
-            "CREATE TABLE " + CommunicationType.TABLE_NAME + " (" +
-                    CommunicationType.COLUMN_NAME_COMMUNICATION_TYPE_ID + INTEGER_TYPE + " PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
-                    CommunicationType.COLUMN_NAME_NAME + TEXT_TYPE +
+    public static final String SQL_CREATE_TABLE_CONNECTION_TYPE =
+            "CREATE TABLE " + ConnectionType.TABLE_NAME + " (" +
+                    ConnectionType.COLUMN_NAME_COMMUNICATION_TYPE_ID + INTEGER_TYPE + " PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
+                    ConnectionType.COLUMN_NAME_NAME + TEXT_TYPE +
                     " );";
 
     public static final String SQL_CREATE_TABLE_AUTHENTICATION =
             "CREATE TABLE " + Authentication.TABLE_NAME + " (" +
                     Authentication.COLUMN_NAME_AUTHENTICATION_ID + INTEGER_TYPE + " PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
                     Authentication.COLUMN_NAME_AUTH_KEY_SHA + TEXT_TYPE + COMMA_SEP +
-                    Authentication.COLUMN_NAME_AUTH_KEY + INTEGER_TYPE +
+                    Authentication.COLUMN_NAME_AUTH_KEY + BLOB_TYPE +
                     " );";
 
     public static final String SQL_CREATE_TABLE_SESSION =
@@ -157,7 +174,7 @@ public class ContractFennecDB {
                     " FOREIGN KEY ("+ Connection.COLUMN_NAME_DEVICE_CERTIFICATE_ID+")" +
                     " REFERENCES "+ DeviceCertificate.TABLE_NAME+" ("+ DeviceCertificate.COLUMN_NAME_DEVICE_CERTIFICATE_ID+")" +
                     " FOREIGN KEY ("+ Connection.COLUMN_NAME_COMMUNICATION_TYPE_ID+")" +
-                    " REFERENCES "+ CommunicationType.TABLE_NAME+" ("+ CommunicationType.COLUMN_NAME_COMMUNICATION_TYPE_ID+")" +
+                    " REFERENCES "+ ConnectionType.TABLE_NAME+" ("+ ConnectionType.COLUMN_NAME_COMMUNICATION_TYPE_ID+")" +
                     " );";
 
     public static final String SQL_CREATE_TABLE_SECURITY =
@@ -173,6 +190,7 @@ public class ContractFennecDB {
     public static final String SQL_CREATE_TABLE_TRANSMISSION =
             "CREATE TABLE " + Transmission.TABLE_NAME + " (" +
                     Transmission.COLUMN_NAME_TRANSMISSION_ID + INTEGER_TYPE + " PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
+                    Transmission.COLUMN_NAME_AUTH_KEY_SHA + TEXT_TYPE + COMMA_SEP +
                     Transmission.COLUMN_NAME_CONTENT_LENGTH + INTEGER_TYPE + COMMA_SEP +
                     Transmission.COLUMN_NAME_TIMESTAMP + INTEGER_TYPE + COMMA_SEP +
                     Transmission.COLUMN_NAME_CONNECTION_ID + INTEGER_TYPE + COMMA_SEP +
@@ -180,9 +198,20 @@ public class ContractFennecDB {
                     " FOREIGN KEY ("+ Transmission.COLUMN_NAME_CONNECTION_ID+")" +
                     " REFERENCES "+ Connection.TABLE_NAME+" ("+ Connection.COLUMN_NAME_CONNECTION_ID+")" +
                     " FOREIGN KEY ("+ Transmission.COLUMN_NAME_COMMUNICATION_TYPE_ID+")" +
-                    " REFERENCES "+ CommunicationType.TABLE_NAME+" ("+ CommunicationType.COLUMN_NAME_COMMUNICATION_TYPE_ID+")" +
+                    " REFERENCES "+ ConnectionType.TABLE_NAME+" ("+ ConnectionType.COLUMN_NAME_COMMUNICATION_TYPE_ID+")" +
                     " );";
 
+    public static final String SQL_CREATE_TABLE_PROTOCOL_VERSION =
+            "CREATE TABLE " + ProtocolVersion.TABLE_NAME + " (" +
+                    ProtocolVersion.COLUMN_NAME_PROTOCOL_VERSION_ID + INTEGER_TYPE + " PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
+                    ProtocolVersion.COLUMN_NAME_NAME + TEXT_TYPE +
+                    " );";
+
+    public static final String SQL_CREATE_TABLE_TRANSMISSION_TYPE =
+            "CREATE TABLE " + TransmissionType.TABLE_NAME + " (" +
+                    TransmissionType.COLUMN_NAME_TRANSMISSION_TYPE_ID + INTEGER_TYPE + " PRIMARY KEY AUTOINCREMENT" + COMMA_SEP +
+                    TransmissionType.COLUMN_NAME_NAME + TEXT_TYPE +
+                    " );";
 
 
     public static final String SQL_DELETE_TABLE_DEVICE =
@@ -190,7 +219,7 @@ public class ContractFennecDB {
     public static final String SQL_DELETE_TABLE_DEVICE_CERTIFICATE =
             "DROP TABLE IF EXISTS " + DeviceCertificate.TABLE_NAME;
     public static final String SQL_DELETE_TABLE_COMMUNICATION_TYPE =
-            "DROP TABLE IF EXISTS " + CommunicationType.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + ConnectionType.TABLE_NAME;
     public static final String SQL_DELETE_TABLE_AUTHENTICATION =
             "DROP TABLE IF EXISTS " + Authentication.TABLE_NAME;
     public static final String SQL_DELETE_TABLE_SESSION =
@@ -201,6 +230,10 @@ public class ContractFennecDB {
             "DROP TABLE IF EXISTS " + Security.TABLE_NAME;
     public static final String SQL_DELETE_TABLE_TRANSMISSION =
             "DROP TABLE IF EXISTS " + Transmission.TABLE_NAME;
+    public static final String SQL_DELETE_TABLE_PROTOCOL_VERSION =
+            "DROP TABLE IF EXISTS " + ProtocolVersion.TABLE_NAME;
+    public static final String SQL_DELETE_TABLE_TRANSMISSION_TYPE =
+            "DROP TABLE IF EXISTS " + TransmissionType.TABLE_NAME;
 
 
 

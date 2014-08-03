@@ -7,10 +7,8 @@ import com.cloupix.fennec.business.exceptions.ProtocolException;
 import com.cloupix.fennec.business.exceptions.SessionException;
 import com.cloupix.fennec.business.interfaces.ProtocolCallbacks;
 import com.cloupix.fennec.business.interfaces.ProtocolV1CallbacksSupernode;
-import com.cloupix.fennec.logic.security.DHKeyAgreementBob;
-import com.cloupix.fennec.logic.security.SecurityLevel;
-import com.cloupix.fennec.logic.security.SecurityManagerA;
-import com.cloupix.fennec.logic.security.SecurityManagerB;
+import com.cloupix.fennec.logic.security.*;
+import com.cloupix.fennec.logic.security.SecurityManager;
 import com.cloupix.fennec.util.R;
 
 import java.io.*;
@@ -89,9 +87,10 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
 
     @Override
     public void authenticate() throws Exception {
-        if(securityManager instanceof SecurityManagerA)
+        if(securityManager.getSecurityLevel().getSecurityClass().equals("A") &&
+                securityManager.getSecurityLevel().getSecurityLevel()<2)
             authenticateA();
-        else if(securityManager instanceof SecurityManagerB)
+        else
             authenticateB();
     }
 
@@ -139,22 +138,36 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
 
 
         /** Recibimos el auth cifrado con la privada dle nodo y cifrado con nuestra publica */
-        CipheredContent cipheredContent = getCipheredContent();
-        line = securityManager.decipherToString(cipheredContent);
+        CipheredContent cipheredContent = getCipheredContent(CipheredContent.CLASS_A);
+        line = securityManagerA.decipherWithPrivateToString(cipheredContent);
         LineParser lineParser = new LineParser(line, SP);
         lineParser.validateNext("AUTHENTICATE_A_1");
-        cipheredContent = getCipheredContent();
-        content = securityManager.decipher(cipheredContent);
+        cipheredContent = getCipheredContent(CipheredContent.CLASS_A);
+        content = securityManagerA.decipherWithPrivate(cipheredContent);
 
 
-        byte[] authKey = securityManagerA.decipherWithPublic(new CipheredContentA(content));
+        byte[] authKey = securityManagerA.decipherWithPublic(new CipheredContent(content));
 
-        securityManager.setAuthKey(authKey);
+        String sha = SecurityManager.SHAsum(authKey);
+        authKey = mProtocolCallbacks.validateSha(sha);
 
-        status = new Status(200);
-        line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_1_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF);
-        writeBytes(line);
+        if(authKey==null){
+            status = new Status(403);
+            writeBytes(LineParser.encodeLine(new String[]{"AUTHENTICATE_A_1_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
+        }else{
+            securityManager.setAuthKey(authKey);
 
+            status = new Status(200);
+            line = LineParser.encodeLine(new String[]{"AUTHENTICATE_A_1_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF);
+            writeBytes(line);
+
+            /** Analytics */
+            if(securityManager.getSecurityLevel().getSecurityLevel() == 0){
+                mProtocolCallbacks.authenticateAnalytic(socket.getLocalPort(), authKey, com.cloupix.fennec.logic.security.SecurityManager.byteArray2Hex(securityManagerA.getPubKey().getEncoded()), true);
+            }else{
+                mProtocolCallbacks.authenticateAnalytic(socket.getLocalPort(), authKey, com.cloupix.fennec.logic.security.SecurityManager.byteArray2Hex(securityManagerA.getPubKey().getEncoded()), false);
+            }
+        }
     }
 
     public void authenticateB() throws IOException, ProtocolException, AuthenticationException, CommunicationException, NoSuchAlgorithmException {
@@ -195,7 +208,7 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
         // Generamos la clave final
         dhBob.generateSharedSecret();
 
-        boolean hasConflict = mProtocolCallbacks.registerDevice(dhBob.getSharedSecret());
+        boolean hasConflict = mProtocolCallbacks.registerDevice(socket.getLocalPort(), dhBob.getSharedSecret());
 
         Status status = new Status(200);
         // Si al guardarlo hemos tenido conflicto de SHA le mandamos un 409 para que repita el registro
@@ -233,7 +246,11 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
         }
         Status status = new Status(200);
         writeBytes(LineParser.encodeLine(new String[]{"SECURITY_RESULT", status.getCode() + "", status.getMsg()}, SP, CLRF));
-        //dos.writeBytes("SECURITY_RESULT" + SP + (new Status(200)).toString(SP) + CLRF);
+
+        /** Analytics */
+        mProtocolCallbacks.negotiateSecurityLevelAnalytic(socket.getLocalPort(), securityLevel);
+
+
         return securityLevel;
     }
 
@@ -258,7 +275,7 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
 
 
         /** Recibimos la respuesta y su contenido del NODE SERVICES */
-        cipheredContent = getCipheredContent();
+        cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         String responseLine = securityManager.decipherToString(cipheredContent);
         LineParser lineParser = new LineParser(responseLine, SP);
         lineParser.validateNext("TRANSMIT_REQUEST_RESULT");
@@ -269,7 +286,7 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
         if(statusCode != 200)
             throw new CommunicationException(new Status(statusCode, statusMsg));
 
-        cipheredContent = getCipheredContent();
+        cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         content = securityManager.decipher(cipheredContent);
 
 
@@ -282,7 +299,7 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
         //String line = "CONNECT_REQUEST" + SP + deviceIp + SP + devicePort + CLRF;
         line = line + LineParser.encodeLine(new String[]{"Source-Host:", sourceIp}, SP, CLRF);
         //line = line + "Source-Host:" + SP + sourceIp + CLRF;
-        CipheredContent cipheredContent = new CipheredContent();
+        CipheredContent cipheredContent = new CipheredContent(CipheredContent.CLASS_B);
         try {
             cipheredContent = securityManager.cipher(line.getBytes(R.charset));
         } catch (Exception e) {
@@ -294,7 +311,7 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
 
         /** Iniciamos espera respuesta del Node Services */
 
-        cipheredContent = getCipheredContent();
+        cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         String responseLine = securityManager.decipherToString(cipheredContent);
 
         LineParser lineParser = new LineParser(responseLine, SP);
@@ -362,7 +379,7 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
 
     public boolean processCipherCommandLine(ActiveRequestManager activeRequestManager) throws Exception {
 
-        CipheredContent cipheredContent = getCipheredContentNoCommand();
+        CipheredContent cipheredContent = getCipheredContentNoCommand(CipheredContent.CLASS_B);
 
         String strBlock = securityManager.decipherToString(cipheredContent);
         BlockParser blockParser = new BlockParser(strBlock, CLRF, SP);
@@ -422,7 +439,7 @@ public class FennecProtocolV1Supernode extends FennecProtocolV1 {
     }
 
     protected void transmitPassive(ActiveRequestManager activeRequestManager) throws Exception {
-        CipheredContent cipheredContent = getCipheredContent();
+        CipheredContent cipheredContent = getCipheredContent(CipheredContent.CLASS_B);
         byte[] content = securityManager.decipher(cipheredContent);
 
 

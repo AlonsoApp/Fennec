@@ -1,10 +1,12 @@
 package com.cloupix.fennec;
 
+import com.cloupix.fennec.dao.Dao;
 import com.cloupix.fennec.logic.Logic;
 import com.cloupix.fennec.logic.network.DaemonTCP;
 import com.cloupix.fennec.util.Log;
 import com.cloupix.fennec.util.R;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.KeyPair;
 import java.security.KeyStoreException;
@@ -53,6 +55,13 @@ public class Main {
 
         R.getInstance().setKeyPair(keyPair);
         R.getInstance().setSignedCertificate(certSigned);
+
+        // Creamos la db si no esta creada
+        File db = new File(R.getInstance().getDatabasePath());
+        if(!db.exists()) {
+            new Dao().createDatabase();
+            System.out.println("Base de datos creada");
+        }
 
 
     }

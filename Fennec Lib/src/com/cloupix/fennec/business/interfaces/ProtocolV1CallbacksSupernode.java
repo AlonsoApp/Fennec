@@ -1,8 +1,8 @@
 package com.cloupix.fennec.business.interfaces;
 
-import java.io.IOException;
+import com.cloupix.fennec.logic.security.SecurityLevel;
+
 import java.security.*;
-import java.security.cert.*;
 import java.security.cert.Certificate;
 
 /**
@@ -15,9 +15,13 @@ public interface ProtocolV1CallbacksSupernode extends ProtocolV1Callbacks {
 
     byte[] validateSha(String sha);
 
-    boolean registerDevice(byte[] authKey);
+    boolean registerDevice(int port, byte[] authKey);
 
     Certificate getSignedCert();
 
     PublicKey verifyCert(Certificate cert);
+
+    void authenticateAnalytic(int port, byte[] authKey, String publicKeyHex, boolean signed);
+
+    void negotiateSecurityLevelAnalytic(int port, SecurityLevel securityLevel);
 }
