@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Profile>
+
+    <Security class="A" level="0" />
+
+    <Keystore password="demopassword">
+
+        <Certificate alias="signed" password="demopassword" signed="true"/>
+        <Certificate alias="com.cloupix.fennec" password="demopassword" signed="false"/>
+
+    </Keystore>
+
+
+    <Supernode-list fixed="true">
+
+        <Supernode ip="127.0.0.1" />
+
+    </Supernode-list>
+
+</Profile>

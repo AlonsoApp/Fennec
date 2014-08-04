@@ -19,9 +19,6 @@ public interface ProtocolV1CallbacksServices extends ProtocolV1Callbacks {
 
     byte[] getAuthKey();
 
-
-    Profile getProfile();
-
     KeyPair getKeyPair();
 
     Certificate getSignedCert();

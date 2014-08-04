@@ -1,7 +1,13 @@
 package com.cloupix.fennec.util;
 
+import com.cloupix.fennec.business.CertificateInfo;
+import com.cloupix.fennec.business.KeystoreInfo;
+import com.cloupix.fennec.business.Supernode;
+import com.cloupix.fennec.logic.security.SecurityLevel;
+
 import java.security.KeyPair;
 import java.security.cert.Certificate;
+import java.util.ArrayList;
 
 /**
  * Created by AlonsoUSA on 30/06/14.
@@ -17,7 +23,7 @@ public abstract class R {
 
 
     protected String localHostIp = "127.0.0.1";
-    protected String supernodeIp;
+    protected String supernodeDefaultIp;
     protected int portInternalListener;
     protected int portExternal;
     protected int portExternalListener;
@@ -26,6 +32,7 @@ public abstract class R {
     protected String rootcaPath;
     protected String databasePath;
     protected String authKeyPath;
+    protected String configPath;
 
     private KeyPair keyPair;
     private Certificate signedCertificate;
@@ -34,8 +41,13 @@ public abstract class R {
 
     public static final String charset = "utf-8";
 
-    // TODO Almacenar esto bien
     private byte[] authKey;
+
+    private SecurityLevel securityLevel;
+    private boolean fixedSupernodeList;
+    private ArrayList<Supernode> supernodeList;
+
+    protected KeystoreInfo keystoreInfo;
 
 
     public static R getInstance(){
@@ -90,12 +102,12 @@ public abstract class R {
         this.portExternalListener = portExternalListener;
     }
 
-    public String getSupernodeIp() {
-        return supernodeIp;
+    public String getSupernodeDefaultIp() {
+        return supernodeDefaultIp;
     }
 
-    public void setSupernodeIp(String supernodeIp) {
-        this.supernodeIp = supernodeIp;
+    public void setSupernodeDefaultIp(String supernodeDefaultIp) {
+        this.supernodeDefaultIp = supernodeDefaultIp;
     }
 
     public byte[] getAuthKey() {
@@ -148,5 +160,45 @@ public abstract class R {
 
     public void setAuthKeyPath(String authKeyPath) {
         this.authKeyPath = authKeyPath;
+    }
+
+    public void setSecurityLevel(SecurityLevel securityLevel) {
+        this.securityLevel = securityLevel;
+    }
+
+    public SecurityLevel getSecurityLevel() {
+        return securityLevel;
+    }
+
+    public void setFixedSupernodeList(boolean fixedSupernodeList) {
+        this.fixedSupernodeList = fixedSupernodeList;
+    }
+
+    public boolean isFixedSupernodeList() {
+        return fixedSupernodeList;
+    }
+
+    public void setSupernodeList(ArrayList<Supernode> supernodeList) {
+        this.supernodeList = supernodeList;
+    }
+
+    public ArrayList<Supernode> getSupernodeList() {
+        return supernodeList;
+    }
+
+    public String getConfigPath() {
+        return configPath;
+    }
+
+    public void setConfigPath(String configPath) {
+        this.configPath = configPath;
+    }
+
+    public KeystoreInfo getKeystoreInfo() {
+        return keystoreInfo;
+    }
+
+    public void setKeystoreInfo(KeystoreInfo keystoreInfo) {
+        this.keystoreInfo = keystoreInfo;
     }
 }

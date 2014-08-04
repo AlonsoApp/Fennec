@@ -75,12 +75,6 @@ public class Session implements Runnable, ProtocolV1CallbacksServices{
     }
 
     @Override
-    public Profile getProfile() {
-        // TODO devolver el profile del device
-        return new Profile();
-    }
-
-    @Override
     public KeyPair getKeyPair() {
         try {
             return logic.getKeyPair();

@@ -1,9 +1,14 @@
 package com.cloupix.fennec;
 
+import com.cloupix.fennec.logic.ConfigHandler;
 import com.cloupix.fennec.logic.Logic;
 import com.cloupix.fennec.logic.network.DaemonTCP;
 import com.cloupix.fennec.util.Log;
 import com.cloupix.fennec.util.R;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
 
 /**
  * Created by AlonsoUSA on 30/06/14.
@@ -37,5 +42,19 @@ public class Main {
         R.build(R.TYPE_SERVICES);
 
         R.getInstance().setAuthKey(new Logic().getAuthKey());
+
+        loadConfigXml();
+    }
+
+    private static void loadConfigXml(){
+        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+        try {
+            SAXParser saxParser = saxParserFactory.newSAXParser();
+            ConfigHandler handler = new ConfigHandler();
+            saxParser.parse(new File(R.getInstance().getConfigPath()), handler);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

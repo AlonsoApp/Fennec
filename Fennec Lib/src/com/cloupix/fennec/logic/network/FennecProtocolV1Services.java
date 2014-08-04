@@ -40,7 +40,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
         if(socket.getPort() == R.getInstance().getPortExternal() || socket.getLocalPort() == R.getInstance().getPortExternalListener()){
             // Va/viene al/del supernode
             // Sacamos nosotros nuestra seguridad
-            SecurityLevel securityLevel = SecurityLevel.generate(mProtocolCallbacks.getProfile());
+            SecurityLevel securityLevel = SecurityLevel.generate();
             securityManager = SecurityManager.build(securityLevel);
 
 
@@ -254,6 +254,7 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
             throw new AuthenticationException(AuthenticationException.FORBIDDEN, statusMsg);
         else if(statusCode != 200)
             throw new CommunicationException(new Status(statusCode, statusMsg));
+        securityManager.setAuthKey(authKey);
     }
 
     @Override
@@ -465,7 +466,11 @@ public class FennecProtocolV1Services extends FennecProtocolV1 {
     protected void connectPassive(String deviceIp, int devicePort, ActiveRequestManager activeRequestManager) throws Exception {
         Status status = new Status(200);
         try{
-            activeRequestManager.start(R.getInstance().getSupernodeIp(), R.getInstance().getPortExternal(), mProtocolCallbacks);
+            String supernodeIp = R.getInstance().getSupernodeDefaultIp();
+            if(R.getInstance().getSupernodeList() != null && R.getInstance().getSupernodeList().size()>0)
+                supernodeIp = R.getInstance().getSupernodeList().get(0).getIp();
+
+            activeRequestManager.start(supernodeIp, R.getInstance().getPortExternal(), mProtocolCallbacks);
 
             //TODO Meter los try catch para reaccionar en funcion de las excepciones
             activeRequestManager.negotiateSecurityLevel();

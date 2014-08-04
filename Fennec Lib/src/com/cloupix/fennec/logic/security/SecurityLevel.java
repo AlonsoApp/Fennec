@@ -1,6 +1,6 @@
 package com.cloupix.fennec.logic.security;
 
-import com.cloupix.fennec.business.Profile;
+import com.cloupix.fennec.util.R;
 
 /**
  * Created by AlonsoUSA on 22/07/14.
@@ -39,8 +39,16 @@ public class SecurityLevel {
         return a.equals(securityClass);
     }
 
-    public static SecurityLevel generate(Profile profile){
-        // TODO Hacer todo el análisis del dispositivo para determinar el securityLevel
-        return new SecurityLevel("A", 1);
+    public static SecurityLevel generate(){
+        if(R.getInstance().getSecurityLevel() != null)
+            return R.getInstance().getSecurityLevel();
+        else
+            return generateDynamically();
+    }
+
+    public static SecurityLevel generateDynamically(){
+        // TODO Hacer el benchmarc ya que el user no ah especificado security level
+        System.out.print("Generando nivel de seguridad automatico");
+        return new SecurityLevel("B", 0);
     }
 }

@@ -1,5 +1,7 @@
 package com.cloupix.fennec.logic;
 
+import com.cloupix.fennec.business.CertificateInfo;
+import com.cloupix.fennec.business.KeystoreInfo;
 import com.cloupix.fennec.util.R;
 
 import java.io.*;
@@ -46,18 +48,21 @@ public class Logic {
         if(keyPair!=null)
             return keyPair;
 
+        KeystoreInfo keystoreInfo = R.getInstance().getKeystoreInfo();
 
         FileInputStream is = new FileInputStream(R.getInstance().getKeystorePath());
 
         KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-        keystore.load(is, KEYSTORE_PASSWORD.toCharArray());
+        keystore.load(is, keystoreInfo.getPassword().toCharArray());
 
-        String alias = "com.cloupix.fennec";
 
-        Key key = keystore.getKey(alias, CERT_PASSWORD.toCharArray());
+        CertificateInfo certInfo = keystoreInfo.getCertificateInfo(false);
+
+
+        Key key = keystore.getKey(certInfo.getAlias(), certInfo.getPassword().toCharArray());
         if (key instanceof PrivateKey) {
             // Get certificate of public key
-            Certificate cert = keystore.getCertificate(alias);
+            Certificate cert = keystore.getCertificate(certInfo.getAlias());
 
 
 
@@ -75,15 +80,18 @@ public class Logic {
         if(cert!=null)
             return cert;
 
+        KeystoreInfo keystoreInfo = R.getInstance().getKeystoreInfo();
 
         FileInputStream is = new FileInputStream(R.getInstance().getKeystorePath());
 
         KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-        keystore.load(is, KEYSTORE_PASSWORD.toCharArray());
+        keystore.load(is, keystoreInfo.getPassword().toCharArray());
 
-        String alias = "signed";
+        CertificateInfo certInfo = keystoreInfo.getCertificateInfo(true);
+        if(certInfo == null)
+            return null;
 
-        return keystore.getCertificate(alias);
+        return keystore.getCertificate(certInfo.getAlias());
     }
 
 
