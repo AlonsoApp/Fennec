@@ -2,12 +2,10 @@ package com.cloupix.fennec.logic.network;
 
 import com.cloupix.fennec.business.LineParser;
 import com.cloupix.fennec.business.Status;
-import com.cloupix.fennec.business.exceptions.AuthenticationException;
 import com.cloupix.fennec.business.exceptions.CommunicationException;
 import com.cloupix.fennec.business.exceptions.ProtocolException;
 import com.cloupix.fennec.business.exceptions.SessionException;
 import com.cloupix.fennec.business.interfaces.ProtocolCallbacks;
-import com.cloupix.fennec.logic.ExceptionManager;
 import com.cloupix.fennec.logic.security.SecurityLevel;
 
 import java.io.BufferedReader;
@@ -15,8 +13,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.security.GeneralSecurityException;
-import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateEncodingException;
 
 /**
@@ -81,7 +77,7 @@ public abstract class FennecProtocol {
             String statusMsg = lineParser.getNext();
             //Si el stausCode no es el esperado o uno de los esperados lanzamos excepción. Si no creamos el protocol de esa versión
             if(statusCode != 200)
-                ExceptionManager.throwByStatusCode(statusCode, statusMsg);
+                throw new CommunicationException(new Status(statusCode, statusMsg));
             else
                 return FennecProtocol.build(version, socket, dos, br, dis, mCallbacks);
         }

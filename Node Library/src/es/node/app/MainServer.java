@@ -28,7 +28,7 @@ public class MainServer {
             public byte[] onTransmit(byte[] data) {
 
                 try {
-                    return (new String(data, "utf-8") + " q ase").getBytes();
+                    return (new String(data, "utf-8") + " usa Fennec u k ase").getBytes();
                 } catch (UnsupportedEncodingException e) {
                     return "Fallo al decofificar string".getBytes();
                 }

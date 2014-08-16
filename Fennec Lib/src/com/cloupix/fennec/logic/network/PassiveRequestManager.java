@@ -1,7 +1,5 @@
 package com.cloupix.fennec.logic.network;
 
-
-
 import com.cloupix.fennec.business.interfaces.ProtocolCallbacks;
 
 import java.io.*;
@@ -12,6 +10,7 @@ import java.net.Socket;
  *
  */
 public class PassiveRequestManager {
+
     private FennecProtocol protocol;
 
     private Socket socket;
@@ -41,7 +40,6 @@ public class PassiveRequestManager {
         /** LIBRARY */
 
         protocol = FennecProtocol.negotiateProtocolVersionPassive(socket, dos, br, dis, mProtocolCallbacks);
-
 
         boolean finish = false;
         while (!finish){

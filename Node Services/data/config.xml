@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Profile>
 
-    <Security class="A" level="0" />
+    <Security class="B" level="0" />
+
+    <Sessions external="5" internal="5"/>
 
     <Keystore password="demopassword">
 
