@@ -1,10 +1,7 @@
 package com.cloupix.fennec.business.interfaces;
 
-import com.cloupix.fennec.business.Profile;
 
 import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
 

@@ -1,6 +1,6 @@
 package com.cloupix.fennec.logic.network;
 
-import com.cloupix.fennec.business.SessionManager;
+import com.cloupix.fennec.logic.SessionManager;
 import com.cloupix.fennec.util.Log;
 
 import java.io.IOException;

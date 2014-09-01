@@ -10,7 +10,7 @@ public class ProtocolException extends SessionException {
     public static final int BAD_IMPLEMENTED = 1;
     public static final int UNKNOWN_VERSION = 2;
     public static final int COMMAND_NOT_RECOGNIZED = 3;
-    public static final int UNKNOWN_SECURITY_LEVEL = 2;
+    public static final int UNKNOWN_SECURITY_LEVEL = 4;
 
     private int type;
 

@@ -19,9 +19,6 @@ import java.security.cert.X509Certificate;
  */
 public class Logic {
 
-    private static final String KEYSTORE_PASSWORD = "demopassword";
-    private static final String CERT_PASSWORD = "demopassword";
-
     public void storeAuthKey(byte[] authKey) throws IOException {
         FileOutputStream fos = new FileOutputStream(R.getInstance().getAuthKeyPath());
         fos.write(authKey);
@@ -93,7 +90,6 @@ public class Logic {
 
         return keystore.getCertificate(certInfo.getAlias());
     }
-
 
     public PublicKey verifyCert(Certificate cert) {
         InputStream inStream = null;

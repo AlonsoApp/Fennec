@@ -35,7 +35,7 @@ public class SecurityManagerB extends SecurityManager {
 
         String aesKey = getAesKey(msgKey);
 
-        byte[] result = AES.cipher(aesKey, content);
+        byte[] result = AESCipher.cipher(aesKey, content);
 
 
         result = concat(msgKey.getBytes(R.charset), result);
@@ -58,7 +58,7 @@ public class SecurityManagerB extends SecurityManager {
 
         String aesKey = getAesKey(msgKey);
 
-        return AES.decipher(aesKey, cipheredContentAB.getContent());
+        return AESCipher.decipher(aesKey, cipheredContentAB.getContent());
     }
 
 

@@ -8,7 +8,7 @@ import javax.crypto.Cipher;
  *
  */
 
-public class AsymmetricCipher {
+public class RSACipher {
     public static byte[] encrypt(byte[] inpBytes, PublicKey key,
                                   String xform) throws Exception {
         Cipher cipher = Cipher.getInstance(xform);

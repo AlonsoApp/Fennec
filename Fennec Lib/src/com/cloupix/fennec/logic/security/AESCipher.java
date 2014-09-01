@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Created by AlonsoUSA on 28/07/14.
  *
  */
-public class AES {
+public class AESCipher {
 
     public static void main(String[] args) {
 

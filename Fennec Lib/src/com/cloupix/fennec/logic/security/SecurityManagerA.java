@@ -69,19 +69,19 @@ public class SecurityManagerA extends SecurityManagerB {
     */
 
     public CipheredContent cipherWithPublic(byte[] content) throws Exception {
-        return new CipheredContent(AsymmetricCipher.encrypt(content, pubKey, getXform()));
+        return new CipheredContent(RSACipher.encrypt(content, pubKey, getXform()));
     }
 
     public CipheredContent cipherWithPrivate(byte[] content) throws Exception {
-        return new CipheredContent(AsymmetricCipher.encrypt(content, privKey, getXform()));
+        return new CipheredContent(RSACipher.encrypt(content, privKey, getXform()));
     }
 
     public byte[] decipherWithPublic(CipheredContent cipheredContent) throws Exception {
-        return AsymmetricCipher.decrypt(cipheredContent.getFullContent(), pubKey, getXform());
+        return RSACipher.decrypt(cipheredContent.getFullContent(), pubKey, getXform());
     }
 
     public byte[] decipherWithPrivate(CipheredContent cipheredContent) throws Exception {
-        return AsymmetricCipher.decrypt(cipheredContent.getFullContent(), privKey, getXform());
+        return RSACipher.decrypt(cipheredContent.getFullContent(), privKey, getXform());
     }
 
     private String getXform(){

@@ -1,4 +1,6 @@
-package com.cloupix.fennec.business;
+package com.cloupix.fennec.logic;
+
+import com.cloupix.fennec.business.Session;
 
 import java.io.IOException;
 import java.net.Socket;

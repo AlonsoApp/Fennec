@@ -16,6 +16,11 @@ public class Session implements ProtocolV1CallbacksLibrary{
 
     private ActiveRequestManager activeRequestManager;
 
+    public Session(){
+        if(R.getInstance()==null)
+            R.build(R.TYPE_LIBRARY);
+    }
+
     public void connect(String deviceIP, int devicePORT) throws IOException, SessionException {
         this.activeRequestManager = new ActiveRequestManager();
         this.activeRequestManager.start(R.getInstance().getLocalHostIp(), R.getInstance().getPortExternal(), this);

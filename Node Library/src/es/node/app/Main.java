@@ -17,8 +17,6 @@ public class Main {
 
     public static void main(String[] args){
 
-        loadConfig();
-
 
         long oTime = System.currentTimeMillis();
         long iTime = 0;
@@ -75,10 +73,6 @@ public class Main {
         }
         while (b);
         return cad;
-    }
-
-    private static void loadConfig(){
-        R.build(R.TYPE_LIBRARY);
     }
 
 }
